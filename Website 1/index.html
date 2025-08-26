@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByteBazaar - Your Ultimate Shopping Destination</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                <span>ByteBazaar</span>
+            </div>
+
+            <div class="nav-search">
+                <input type="text" placeholder="Search products, brands and more...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="nav-links">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>Account</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-heart"></i>
+                    <span>Wishlist</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+
+            <div class="nav-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+
+        <!-- Categories Menu -->
+        <div class="categories-menu">
+            <div class="nav-container">
+                <ul class="categories-list">
+                    <li><a href="#"><i class="fas fa-tshirt"></i> Fashion</a></li>
+                    <li><a href="#"><i class="fas fa-laptop"></i> Electronics</a></li>
+                    <li><a href="#"><i class="fas fa-home"></i> Home & Garden</a></li>
+                    <li><a href="#"><i class="fas fa-dumbbell"></i> Sports</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i> Books</a></li>
+                    <li><a href="#"><i class="fas fa-gamepad"></i> Toys</a></li>
+                    <li><a href="#"><i class="fas fa-car"></i> Automotive</a></li>
+                    <li><a href="#"><i class="fas fa-palette"></i> Art & Crafts</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Welcome to <span class="brand-text">ByteBazaar</span></h1>
+                <p>Discover amazing products at unbeatable prices. Shop from thousands of sellers worldwide.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Start Shopping</button>
+                    <button class="btn btn-secondary">Become a Seller</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- <img src="https://placehold.co/600x400/ff9771/ffffff?text=Shopping+Experience" alt="Shopping"> -->
+                <img src="https://blobcdn.same.energy/a/0d/63/0d632081642dce684e2069c15e2f28059d87c7be" alt="Shopping">
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="featured-categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="carousel-container">
+                <button class="carousel-btn carousel-btn-prev" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="carousel-wrapper">
+                    <div class="categories-carousel" id="categoriesCarousel">
+                        <div class="category-card">
+                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Fashion" alt="Fashion">
+                            <h3>Fashion</h3>
+                            <p>Trendy clothes for everyone</p>
+                        </div>
+                        <div class="category-card">
+                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Electronics" alt="Electronics">
+                            <h3>Electronics</h3>
+                            <p>Latest gadgets & tech</p>
+                        </div>
+                        <div class="category-card">
+                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Home" alt="Home">
+                            <h3>Home & Garden</h3>
+                            <p>Beautiful home essentials</p>
+                        </div>
+                        <div class="category-card">
+                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Sports" alt="Sports">
+                            <h3>Sports & Fitness</h3>
+                            <p>Stay active and healthy</p>
+                        </div>
+                        <div class="category-card">
+                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Books" alt="Books">
+                            <h3>Books</h3>
+                            <p>Knowledge at your fingertips</p>
+                        </div>
+                        <div class="category-card">
+                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Toys" alt="Toys">
+                            <h3>Toys & Games</h3>
+                            <p>Fun for all ages</p>
+                        </div>
+                        <div class="category-card">
+                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Beauty" alt="Beauty">
+                            <h3>Beauty & Health</h3>
+                            <p>Look and feel your best</p>
+                        </div>
+                        <div class="category-card">
+                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Automotive" alt="Automotive">
+                            <h3>Automotive</h3>
+                            <p>Car parts & accessories</p>
+                        </div>
+                        <div class="category-card">
+                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Art" alt="Art">
+                            <h3>Art & Crafts</h3>
+                            <p>Creative supplies & tools</p>
+                        </div>
+                        <div class="category-card">
+                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Jewelry" alt="Jewelry">
+                            <h3>Jewelry</h3>
+                            <p>Elegant & stylish pieces</p>
+                        </div>
+                        <div class="category-card">
+                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Pet" alt="Pet">
+                            <h3>Pet Supplies</h3>
+                            <p>Everything for your pets</p>
+                        </div>
+                        <div class="category-card">
+                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Travel" alt="Travel">
+                            <h3>Travel & Luggage</h3>
+                            <p>Travel in style and comfort</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn-next" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="carousel-indicators" id="carouselIndicators">
+                <button class="indicator active" data-slide="0"></button>
+                <button class="indicator" data-slide="1"></button>
+                <button class="indicator" data-slide="2"></button>
+                <button class="indicator" data-slide="3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Products</h2>
+                <button class="btn btn-secondary view-all-products-btn">View All Products</button>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+1" alt="Product">
+                        <div class="product-overlay">
+                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium Headphones</h3>
+                        <p class="product-price">$99.99</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.2)</span>
+                        </div>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+2" alt="Product">
+                        <div class="product-overlay">
+                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Smart Watch</h3>
+                        <p class="product-price">$199.99</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(4.8)</span>
+                        </div>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+3" alt="Product">
+                        <div class="product-overlay">
+                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Designer Backpack</h3>
+                        <p class="product-price">$79.99</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.1)</span>
+                        </div>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+4" alt="Product">
+                        <div class="product-overlay">
+                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Wireless Speaker</h3>
+                        <p class="product-price">$149.99</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(4.9)</span>
+                        </div>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card product-card-desktop">
+                    <div class="product-image">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+5" alt="Product">
+                        <div class="product-overlay">
+                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Gaming Keyboard</h3>
+                        <p class="product-price">$129.99</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(4.7)</span>
+                        </div>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card product-card-desktop">
+                    <div class="product-image">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+6" alt="Product">
+                        <div class="product-overlay">
+                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fitness Tracker</h3>
+                        <p class="product-price">$89.99</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.3)</span>
+                        </div>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card product-card-hidden">
+                    <div class="product-image">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+7" alt="Product">
+                        <div class="product-overlay">
+                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Coffee Maker</h3>
+                        <p class="product-price">$159.99</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.5)</span>
+                        </div>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card product-card-hidden">
+                    <div class="product-image">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+8" alt="Product">
+                        <div class="product-overlay">
+                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Desk Lamp</h3>
+                        <p class="product-price">$49.99</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(4.6)</span>
+                        </div>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card product-card-hidden">
+                    <div class="product-image">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+9" alt="Product">
+                        <div class="product-overlay">
+                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Yoga Mat</h3>
+                        <p class="product-price">$29.99</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.4)</span>
+                        </div>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card product-card-hidden">
+                    <div class="product-image">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+10" alt="Product">
+                        <div class="product-overlay">
+                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
+                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Phone Case</h3>
+                        <p class="product-price">$19.99</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(4.8)</span>
+                        </div>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Sellers Section -->
+    <section class="popular-sellers">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Popular Sellers</h2>
+                <button class="btn btn-secondary view-all-btn">View All Sellers</button>
+            </div>
+            <div class="sellers-grid">
+                <div class="seller-card">
+                    <div class="seller-header">
+                        <div class="seller-logo">
+                            <img src="https://placehold.co/80x80/ff9771/ffffff?text=TechHub" alt="TechHub">
+                        </div>
+                        <div class="seller-info">
+                            <h3>TechHub Store</h3>
+                            <p class="seller-category">Electronics & Gadgets</p>
+                            <div class="seller-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(4.9)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="seller-stats">
+                        <div class="stat">
+                            <span class="stat-number">2.5K</span>
+                            <span class="stat-label">Products</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15K</span>
+                            <span class="stat-label">Sales</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">Positive</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary">Visit Store</button>
+                </div>
+
+                <div class="seller-card">
+                    <div class="seller-header">
+                        <div class="seller-logo">
+                            <img src="https://placehold.co/80x80/ff9771/ffffff?text=Fashion" alt="Fashion">
+                        </div>
+                        <div class="seller-info">
+                            <h3>Fashion Forward</h3>
+                            <p class="seller-category">Clothing & Accessories</p>
+                            <div class="seller-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.7)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="seller-stats">
+                        <div class="stat">
+                            <span class="stat-number">1.8K</span>
+                            <span class="stat-label">Products</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">12K</span>
+                            <span class="stat-label">Sales</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">96%</span>
+                            <span class="stat-label">Positive</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary">Visit Store</button>
+                </div>
+
+                <div class="seller-card">
+                    <div class="seller-header">
+                        <div class="seller-logo">
+                            <img src="https://placehold.co/80x80/ff9771/ffffff?text=Home" alt="Home">
+                        </div>
+                        <div class="seller-info">
+                            <h3>Home Essentials</h3>
+                            <p class="seller-category">Home & Garden</p>
+                            <div class="seller-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(4.8)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="seller-stats">
+                        <div class="stat">
+                            <span class="stat-number">3.2K</span>
+                            <span class="stat-label">Products</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">18K</span>
+                            <span class="stat-label">Sales</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">99%</span>
+                            <span class="stat-label">Positive</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary">Visit Store</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated with ByteBazaar</h2>
+                <p>Get the latest deals and offers directly in your inbox</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address">
+                    <button class="btn btn-primary">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                        <span>ByteBazaar</span>
+                    </div>
+                    <p>Your ultimate shopping destination with millions of products from trusted sellers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Fashion</a></li>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Home & Garden</a></li>
+                        <li><a href="#">Sports</a></li>
+                        <li><a href="#">Books</a></li>
+                        <li><a href="#">Beauty & Health</a></li>
+                        <li><a href="#">Automotive</a></li>
+                        <li><a href="#">Pet Supplies</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Seller</h3>
+                    <ul>
+                        <li><a href="#">Become a Seller</a></li>
+                        <li><a href="#">Seller Dashboard</a></li>
+                        <li><a href="#">Seller Support</a></li>
+                        <li><a href="#">Seller Policies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 ByteBazaar. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Login</button>
+                    <button class="auth-tab" data-tab="register">Register</button>
+                </div>
+
+                <div id="loginForm" class="auth-form active">
+                    <h2>Welcome Back!</h2>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </form>
+                </div>
+
+                <div id="registerForm" class="auth-form">
+                    <h2>Create Account</h2>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" placeholder="Confirm Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create Account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
