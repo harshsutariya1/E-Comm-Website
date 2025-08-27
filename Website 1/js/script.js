@@ -6,8 +6,44 @@ document.addEventListener('DOMContentLoaded', function () {
     if (mobileMenu) {
         mobileMenu.addEventListener('click', function () {
             navLinks.classList.toggle('active');
+            // Toggle icon
+            const icon = this.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         });
     }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function (e) {
+        if (!mobileMenu.contains(e.target) && !navLinks.contains(e.target)) {
+            navLinks.classList.remove('active');
+            const icon = mobileMenu.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+    });
+
+    // Close mobile menu when clicking a nav link
+    const navLinkElements = document.querySelectorAll('.nav-link');
+    navLinkElements.forEach(link => {
+        link.addEventListener('click', function () {
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+                const icon = mobileMenu.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+    });
 
     // Account dropdown functionality
     const accountLinkToggle = document.getElementById('accountLinkToggle');
@@ -28,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Add to cart functionality
-    const addToCartBtns = document.querySelectorAll('.product-card .btn-primary');
+    const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
     const cartCount = document.querySelector('.cart-count');
     let cartItems = 0;
 
@@ -49,22 +85,114 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Wishlist functionality
-    const wishlistBtns = document.querySelectorAll('.btn-icon');
+    const wishlistBtns = document.querySelectorAll('.wishlist-btn');
 
     wishlistBtns.forEach(btn => {
-        btn.addEventListener('click', function () {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation(); // Prevent card click
             const icon = this.querySelector('i');
             if (icon.classList.contains('fa-heart')) {
-                if (icon.classList.contains('fas')) {
+                const productCard = this.closest('.product-card');
+                const productImage = productCard.querySelector('img').src;
+                const productTitle = productCard.querySelector('h3').textContent;
+                const productPrice = productCard.querySelector('.product-price').textContent;
+                const productRating = parseFloat(productCard.querySelector('.product-rating span').textContent.replace('(', '').replace(')', ''));
+
+                const product = {
+                    id: generateProductId(productTitle), // Add unique ID
+                    image: productImage,
+                    title: productTitle,
+                    price: productPrice,
+                    rating: productRating,
+                    dateAdded: new Date().toISOString()
+                };
+
+                // Get current wishlist from localStorage
+                let wishlist = JSON.parse(localStorage.getItem('bytebazaar_wishlist')) || [];
+
+                // Check if item already exists in wishlist
+                const existingItemIndex = wishlist.findIndex(item => item.id === product.id);
+
+                if (existingItemIndex !== -1) {
+                    // Remove from wishlist
+                    wishlist.splice(existingItemIndex, 1);
                     icon.classList.remove('fas');
                     icon.classList.add('far');
                     showNotification('Removed from wishlist');
                 } else {
+                    // Add to wishlist
+                    wishlist.push(product);
                     icon.classList.remove('far');
                     icon.classList.add('fas');
                     showNotification('Added to wishlist!');
+
+                    // Add animation
+                    icon.style.transform = 'scale(1.3)';
+                    setTimeout(() => {
+                        icon.style.transform = 'scale(1)';
+                    }, 300);
                 }
+
+                localStorage.setItem('bytebazaar_wishlist', JSON.stringify(wishlist));
+
+                // Dispatch custom event for wishlist updates
+                window.dispatchEvent(new CustomEvent('wishlistUpdated', { detail: wishlist }));
             }
+        });
+    });
+
+    // Initialize wishlist state on page load
+    function initializeWishlistState() {
+        const wishlist = JSON.parse(localStorage.getItem('bytebazaar_wishlist')) || [];
+        const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+
+        wishlistBtns.forEach(btn => {
+            const productCard = btn.closest('.product-card');
+            const productTitle = productCard.querySelector('h3').textContent;
+            const productId = generateProductId(productTitle);
+            const icon = btn.querySelector('i');
+
+            const isInWishlist = wishlist.some(item => item.id === productId);
+            if (isInWishlist) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+            }
+        });
+    }
+
+    // Generate unique product ID
+    function generateProductId(title) {
+        return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    }
+
+    // Call initialization on DOM ready
+    initializeWishlistState();
+
+    // Quick view functionality
+    const quickViewBtns = document.querySelectorAll('.quick-view-btn');
+
+    quickViewBtns.forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation(); // Prevent card click
+            const productCard = this.closest('.product-card');
+            const productTitle = productCard.querySelector('h3').textContent;
+            showNotification(`Quick view for ${productTitle}`);
+        });
+    });
+
+    // Image loading handler
+    const productImages = document.querySelectorAll('.product-image img');
+    productImages.forEach(img => {
+        img.addEventListener('load', function () {
+            this.classList.add('loaded');
+        });
+
+        img.addEventListener('error', function () {
+            this.src = 'https://placehold.co/250x250/e0e0e0/999?text=Image+Not+Available';
+            this.classList.add('loaded');
         });
     });
 
@@ -104,15 +232,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-    // Category card click handling
-    const categoryCards = document.querySelectorAll('.category-card');
-    categoryCards.forEach(card => {
-        card.addEventListener('click', function () {
-            const categoryName = this.querySelector('h3').textContent;
-            showNotification(`Browsing ${categoryName} category`);
-        });
-    });
 
     // Hero section buttons
     const heroButtons = document.querySelectorAll('.hero-buttons .btn');
@@ -186,130 +305,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const viewAllProductsBtn = document.querySelector('.view-all-products-btn');
     if (viewAllProductsBtn) {
         viewAllProductsBtn.addEventListener('click', function () {
-            showNotification('Redirecting to all products page...');
-            // Here you would typically redirect to a products page
+            window.location.href = 'products.html';
         });
     }
-
-    // Add scroll animations _____________________________________________ //
-    // function animateOnScroll() {
-    //     const elements = document.querySelectorAll('.category-card, .product-card, .seller-card');
-    //
-    //     elements.forEach(element => {
-    //         const elementTop = element.getBoundingClientRect().top;
-    //         const elementVisible = 150;
-    //
-    //         if (elementTop < window.innerHeight - elementVisible) {
-    //             element.style.opacity = '1';
-    //             element.style.transform = 'translateY(0)';
-    //         }
-    //     });
-    // }
-    //
-    // // Initialize scroll animations
-    // const elements = document.querySelectorAll('.category-card, .product-card, .seller-card');
-    // elements.forEach(element => {
-    //     element.style.opacity = '0';
-    //     element.style.transform = 'translateY(20px)';
-    //     element.style.transition = 'all 0.6s ease';
-    // });
-    //
-    // window.addEventListener('scroll', animateOnScroll);
-    // animateOnScroll(); _________________________________________________ //
-
-    // Categories Carousel functionality
-    const carousel = document.getElementById('categoriesCarousel');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const indicators = document.querySelectorAll('.indicator');
-
-    let currentSlide = 0;
-    const totalSlides = 4; // Updated to 4 indicator dots for 12 categories
-    const cardsPerSlide = window.innerWidth <= 768 ? 1 : (window.innerWidth <= 1024 ? 2 : 3);
-
-    function updateCarousel() {
-        const cardWidth = 250 + 30; // card width + gap
-        const translateX = currentSlide * (cardWidth * cardsPerSlide);
-        carousel.style.transform = `translateX(-${translateX}px)`;
-
-        // Update indicators
-        indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === currentSlide);
-        });
-
-        // Update button states
-        prevBtn.disabled = currentSlide === 0;
-        nextBtn.disabled = currentSlide === totalSlides - 1;
-    }
-
-    function nextSlide() {
-        if (currentSlide < totalSlides - 1) {
-            currentSlide++;
-            updateCarousel();
-        }
-    }
-
-    function prevSlide() {
-        if (currentSlide > 0) {
-            currentSlide--;
-            updateCarousel();
-        }
-    }
-
-    function goToSlide(slideIndex) {
-        currentSlide = slideIndex;
-        updateCarousel();
-    }
-
-    // Event listeners
-    if (nextBtn) {
-        nextBtn.addEventListener('click', nextSlide);
-    }
-
-    if (prevBtn) {
-        prevBtn.addEventListener('click', prevSlide);
-    }
-
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => goToSlide(index));
-    });
-
-    // Auto-slide functionality
-    let autoSlideInterval = setInterval(() => {
-        if (currentSlide === totalSlides - 1) {
-            currentSlide = 0;
-        } else {
-            currentSlide++;
-        }
-        updateCarousel();
-    }, 6000); // Increased to 6 seconds for more categories
-
-    // Pause auto-slide on hover
-    const carouselContainer = document.querySelector('.carousel-container');
-    if (carouselContainer) {
-        carouselContainer.addEventListener('mouseenter', () => {
-            clearInterval(autoSlideInterval);
-        });
-
-        carouselContainer.addEventListener('mouseleave', () => {
-            autoSlideInterval = setInterval(() => {
-                if (currentSlide === totalSlides - 1) {
-                    currentSlide = 0;
-                } else {
-                    currentSlide++;
-                }
-                updateCarousel();
-            }, 6000);
-        });
-    }
-
-    // Initialize carousel
-    updateCarousel();
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        updateCarousel();
-    });
 });
 
 // Utility function to show notifications

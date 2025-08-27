@@ -26,6 +26,10 @@
             </div>
 
             <div class="nav-links">
+                <a href="#featured-categories" class="nav-link">
+                    <i class="fas fa-th"></i>
+                    <span>Categories</span>
+                </a>
                 <div class="nav-link-dropdown">
                     <a href="#" class="nav-link" id="accountLinkToggle">
                         <i class="fas fa-user"></i>
@@ -36,7 +40,7 @@
                         <a href="register.html" class="dropdown-item">Register</a>
                     </div>
                 </div>
-                <a href="#" class="nav-link">
+                <a href="wishlist.html" class="nav-link">
                     <i class="fas fa-heart"></i>
                     <span>Wishlist</span>
                 </a>
@@ -71,6 +75,15 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-background">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+        </div>
         <div class="hero-container">
             <div class="hero-content">
                 <h1>Welcome to <span class="brand-text">ByteBazaar</span></h1>
@@ -87,91 +100,6 @@
         </div>
     </section>
 
-    <!-- Featured Categories -->
-    <section class="featured-categories">
-        <div class="container">
-            <h2 class="section-title">Shop by Category</h2>
-            <div class="carousel-container">
-                <button class="carousel-btn carousel-btn-prev" id="prevBtn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <div class="carousel-wrapper">
-                    <div class="categories-carousel" id="categoriesCarousel">
-                        <div class="category-card">
-                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Fashion" alt="Fashion">
-                            <h3>Fashion</h3>
-                            <p>Trendy clothes for everyone</p>
-                        </div>
-                        <div class="category-card">
-                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Electronics" alt="Electronics">
-                            <h3>Electronics</h3>
-                            <p>Latest gadgets & tech</p>
-                        </div>
-                        <div class="category-card">
-                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Home" alt="Home">
-                            <h3>Home & Garden</h3>
-                            <p>Beautiful home essentials</p>
-                        </div>
-                        <div class="category-card">
-                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Sports" alt="Sports">
-                            <h3>Sports & Fitness</h3>
-                            <p>Stay active and healthy</p>
-                        </div>
-                        <div class="category-card">
-                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Books" alt="Books">
-                            <h3>Books</h3>
-                            <p>Knowledge at your fingertips</p>
-                        </div>
-                        <div class="category-card">
-                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Toys" alt="Toys">
-                            <h3>Toys & Games</h3>
-                            <p>Fun for all ages</p>
-                        </div>
-                        <div class="category-card">
-                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Beauty" alt="Beauty">
-                            <h3>Beauty & Health</h3>
-                            <p>Look and feel your best</p>
-                        </div>
-                        <div class="category-card">
-                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Automotive" alt="Automotive">
-                            <h3>Automotive</h3>
-                            <p>Car parts & accessories</p>
-                        </div>
-                        <div class="category-card">
-                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Art" alt="Art">
-                            <h3>Art & Crafts</h3>
-                            <p>Creative supplies & tools</p>
-                        </div>
-                        <div class="category-card">
-                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Jewelry" alt="Jewelry">
-                            <h3>Jewelry</h3>
-                            <p>Elegant & stylish pieces</p>
-                        </div>
-                        <div class="category-card">
-                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Pet" alt="Pet">
-                            <h3>Pet Supplies</h3>
-                            <p>Everything for your pets</p>
-                        </div>
-                        <div class="category-card">
-                            <img src="https://placehold.co/200x200/ff9771/ffffff?text=Travel" alt="Travel">
-                            <h3>Travel & Luggage</h3>
-                            <p>Travel in style and comfort</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-btn carousel-btn-next" id="nextBtn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            <div class="carousel-indicators" id="carouselIndicators">
-                <button class="indicator active" data-slide="0"></button>
-                <button class="indicator" data-slide="1"></button>
-                <button class="indicator" data-slide="2"></button>
-                <button class="indicator" data-slide="3"></button>
-            </div>
-        </div>
-    </section>
-
     <!-- Featured Products -->
     <section class="featured-products">
         <div class="container">
@@ -183,236 +111,304 @@
                 <div class="product-card">
                     <div class="product-image">
                         <img src="https://blobcdn.same.energy/a/35/c9/35c93bd71cf4e6e84dc0e8392b8ac13d620be867"
-                            alt="Product">
+                            alt="Premium Headphones - High-quality wireless headphones with noise cancellation">
                         <div class="product-overlay">
-                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
-                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon wishlist-btn" aria-label="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="btn-icon quick-view-btn" aria-label="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
+                        <div class="product-badge">New</div>
                     </div>
                     <div class="product-info">
                         <h3>Premium Headphones</h3>
                         <p class="product-price">$99.99</p>
                         <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
                             <span>(4.2)</span>
                         </div>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
                         <img src="https://blobcdn.same.energy/a/aa/df/aadf17fbbcb0b27b77c266eeef9bce73e51c4127"
-                            alt="Product">
+                            alt="Smart Watch - Advanced fitness tracking smartwatch with heart rate monitor">
                         <div class="product-overlay">
-                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
-                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon wishlist-btn" aria-label="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="btn-icon quick-view-btn" aria-label="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
+                        <div class="product-badge">Best Seller</div>
                     </div>
                     <div class="product-info">
                         <h3>Smart Watch</h3>
                         <p class="product-price">$199.99</p>
                         <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                             <span>(4.8)</span>
                         </div>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
                         <img src="https://blobcdn.same.energy/a/6a/b0/6ab02c96c2fbe6c248cbeba571fb96273e0e0a7a"
-                            alt="Product">
+                            alt="Designer Backpack - Stylish and durable backpack for everyday use">
                         <div class="product-overlay">
-                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
-                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon wishlist-btn" aria-label="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="btn-icon quick-view-btn" aria-label="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <h3>Designer Backpack</h3>
                         <p class="product-price">$79.99</p>
                         <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
                             <span>(4.1)</span>
                         </div>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
                         <img src="https://blobcdn.same.energy/b/ee/3d/ee3d982582428fc8af247e35291c30051d6acf05"
-                            alt="Product">
+                            alt="Wireless Speaker - Portable Bluetooth speaker with excellent sound quality">
                         <div class="product-overlay">
-                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
-                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon wishlist-btn" aria-label="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="btn-icon quick-view-btn" aria-label="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
+                        <div class="product-badge">Sale</div>
                     </div>
                     <div class="product-info">
                         <h3>Wireless Speaker</h3>
                         <p class="product-price">$149.99</p>
                         <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                             <span>(4.9)</span>
                         </div>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card product-card-desktop">
                     <div class="product-image">
                         <img src="https://blobcdn.same.energy/a/9f/ec/9fec7195862d1e0ce4e502e7a52940e1463dd60b"
-                            alt="Product">
+                            alt="Gaming Keyboard - Mechanical gaming keyboard with RGB lighting">
                         <div class="product-overlay">
-                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
-                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon wishlist-btn" aria-label="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="btn-icon quick-view-btn" aria-label="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <h3>Gaming Keyboard</h3>
                         <p class="product-price">$129.99</p>
                         <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                             <span>(4.7)</span>
                         </div>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card product-card-desktop">
                     <div class="product-image">
                         <img src="https://blobcdn.same.energy/b/8a/ad/8aad3251eaac9ebcf50038c4fcd70fd32290839a"
-                            alt="Product">
+                            alt="Fitness Tracker - Advanced fitness tracker with sleep monitoring">
                         <div class="product-overlay">
-                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
-                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon wishlist-btn" aria-label="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="btn-icon quick-view-btn" aria-label="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <h3>Fitness Tracker</h3>
                         <p class="product-price">$89.99</p>
                         <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
                             <span>(4.3)</span>
                         </div>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
                     </div>
                 </div>
 
+                <!-- Hidden products for larger screens -->
                 <div class="product-card product-card-hidden">
                     <div class="product-image">
-                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+7" alt="Product">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+7"
+                            alt="Coffee Maker - Premium coffee maker with programmable features">
                         <div class="product-overlay">
-                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
-                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon wishlist-btn" aria-label="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="btn-icon quick-view-btn" aria-label="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <h3>Coffee Maker</h3>
                         <p class="product-price">$159.99</p>
                         <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
                             <span>(4.5)</span>
                         </div>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card product-card-hidden">
                     <div class="product-image">
-                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+8" alt="Product">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+8"
+                            alt="Desk Lamp - LED desk lamp with adjustable brightness">
                         <div class="product-overlay">
-                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
-                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon wishlist-btn" aria-label="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="btn-icon quick-view-btn" aria-label="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <h3>Desk Lamp</h3>
                         <p class="product-price">$49.99</p>
                         <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                             <span>(4.6)</span>
                         </div>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card product-card-hidden">
                     <div class="product-image">
-                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+9" alt="Product">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+9"
+                            alt="Yoga Mat - Non-slip yoga mat for comfortable workouts">
                         <div class="product-overlay">
-                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
-                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon wishlist-btn" aria-label="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="btn-icon quick-view-btn" aria-label="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <h3>Yoga Mat</h3>
                         <p class="product-price">$29.99</p>
                         <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
                             <span>(4.4)</span>
                         </div>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card product-card-hidden">
                     <div class="product-image">
-                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+10" alt="Product">
+                        <img src="https://placehold.co/250x250/ff9771/ffffff?text=Product+10"
+                            alt="Phone Case - Protective phone case with card holder">
                         <div class="product-overlay">
-                            <button class="btn-icon"><i class="fas fa-heart"></i></button>
-                            <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon wishlist-btn" aria-label="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button class="btn-icon quick-view-btn" aria-label="Quick view">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <h3>Phone Case</h3>
                         <p class="product-price">$19.99</p>
                         <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                             <span>(4.8)</span>
                         </div>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - ByteBazaar</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.jpg">
+    <link rel="apple-touch-icon" href="assets/logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/wishlist.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo-link">
+                <div class="nav-logo">
+                    <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                    <span>ByteBazaar</span>
+                </div>
+            </a>
+
+            <div class="nav-search">
+                <input type="text" placeholder="Search products, brands and more...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="nav-links">
+                <a href="#featured-categories" class="nav-link">
+                    <i class="fas fa-th"></i>
+                    <span>Categories</span>
+                </a>
+                <div class="nav-link-dropdown">
+                    <a href="#" class="nav-link" id="accountLinkToggle">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                    <div class="dropdown-menu" id="accountDropdown">
+                        <a href="login.html" class="dropdown-item">Login</a>
+                        <a href="register.html" class="dropdown-item">Register</a>
+                    </div>
+                </div>
+                <a href="wishlist.html" class="nav-link active">
+                    <i class="fas fa-heart"></i>
+                    <span>Wishlist</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+
+            <div class="nav-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+
+        <!-- Categories Menu -->
+        <div class="categories-menu">
+            <div class="nav-container">
+                <ul class="categories-list">
+                    <li><a href="#"><i class="fas fa-tshirt"></i> Fashion</a></li>
+                    <li><a href="#"><i class="fas fa-laptop"></i> Electronics</a></li>
+                    <li><a href="#"><i class="fas fa-home"></i> Home & Garden</a></li>
+                    <li><a href="#"><i class="fas fa-dumbbell"></i> Sports</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i> Books</a></li>
+                    <li><a href="#"><i class="fas fa-gamepad"></i> Toys</a></li>
+                    <li><a href="#"><i class="fas fa-car"></i> Automotive</a></li>
+                    <li><a href="#"><i class="fas fa-palette"></i> Art & Crafts</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Wishlist Section -->
+    <section class="wishlist-section">
+        <div class="container">
+            <div class="wishlist-header">
+                <h1 class="section-title">My Wishlist</h1>
+                <p class="wishlist-count">You have <span id="wishlistItemCount">0</span> items in your wishlist</p>
+            </div>
+
+            <div class="wishlist-controls">
+                <div class="wishlist-search">
+                    <input type="text" id="wishlistSearch" placeholder="Search wishlist...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="wishlist-sort">
+                    <select id="sortSelect">
+                        <option value="">Sort by</option>
+                        <option value="name">Name (A-Z)</option>
+                        <option value="price-low">Price (Low to High)</option>
+                        <option value="price-high">Price (High to Low)</option>
+                        <option value="rating">Rating</option>
+                        <option value="date">Date Added</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="wishlist-content">
+                <div id="wishlistGrid" class="wishlist-grid">
+                    <!-- Wishlist items will be dynamically added here -->
+                </div>
+
+                <div id="emptyWishlist" class="empty-wishlist">
+                    <div class="empty-wishlist-content">
+                        <i class="fas fa-heart-broken"></i>
+                        <h3>Your wishlist is empty</h3>
+                        <p>Start browsing and add items to your wishlist!</p>
+                        <a href="index.html" class="btn btn-primary">Start Shopping</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated with ByteBazaar</h2>
+                <p>Get the latest deals and offers directly in your inbox</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address">
+                    <button class="btn btn-primary">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                        <span>ByteBazaar</span>
+                    </div>
+                    <p>Your ultimate shopping destination with millions of products from trusted sellers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Fashion</a></li>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Home & Garden</a></li>
+                        <li><a href="#">Sports</a></li>
+                        <li><a href="#">Books</a></li>
+                        <li><a href="#">Beauty & Health</a></li>
+                        <li><a href="#">Automotive</a></li>
+                        <li><a href="#">Pet Supplies</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Seller</h3>
+                    <ul>
+                        <li><a href="#">Become a Seller</a></li>
+                        <li><a href="#">Seller Dashboard</a></li>
+                        <li><a href="#">Seller Support</a></li>
+                        <li><a href="#">Seller Policies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 ByteBazaar. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/wishlist.js"></script>
+</body>
+
+</html>
