@@ -66,12 +66,37 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add to cart functionality
     const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
     const cartCount = document.querySelector('.cart-count');
-    let cartItems = 0;
+    let cartItems = JSON.parse(localStorage.getItem('bytebazaar_cart')) || [];
 
     addToCartBtns.forEach(btn => {
         btn.addEventListener('click', function () {
-            cartItems++;
-            cartCount.textContent = cartItems;
+            const productCard = this.closest('.product-card');
+            const productImage = productCard.querySelector('img').src;
+            const productTitle = productCard.querySelector('h3').textContent;
+            const productPrice = productCard.querySelector('.product-price').textContent;
+            const productRating = parseFloat(productCard.querySelector('.product-rating span').textContent.replace('(', '').replace(')', ''));
+
+            const product = {
+                id: generateProductId(productTitle),
+                image: productImage,
+                title: productTitle,
+                price: productPrice,
+                rating: productRating,
+                quantity: 1,
+                dateAdded: new Date().toISOString()
+            };
+
+            // Check if item already exists in cart
+            const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+
+            if (existingItemIndex !== -1) {
+                cartItems[existingItemIndex].quantity += 1;
+            } else {
+                cartItems.push(product);
+            }
+
+            localStorage.setItem('bytebazaar_cart', JSON.stringify(cartItems));
+            updateCartCount();
 
             // Add animation
             cartCount.style.transform = 'scale(1.2)';
@@ -83,6 +108,18 @@ document.addEventListener('DOMContentLoaded', function () {
             showNotification('Product added to cart!');
         });
     });
+
+    // Update cart count function
+    function updateCartCount() {
+        const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+        const cartCountElements = document.querySelectorAll('.cart-count');
+        cartCountElements.forEach(element => {
+            element.textContent = totalItems;
+        });
+    }
+
+    // Initialize cart count on page load
+    updateCartCount();
 
     // Wishlist functionality
     const wishlistBtns = document.querySelectorAll('.wishlist-btn');
@@ -308,6 +345,15 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = 'products.html';
         });
     }
+
+    // Cart link functionality
+    const cartLinks = document.querySelectorAll('a[href="cart.html"]');
+    cartLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = 'cart.html';
+        });
+    });
 });
 
 // Utility function to show notifications
