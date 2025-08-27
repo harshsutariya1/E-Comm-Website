@@ -9,48 +9,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Auth modal functionality
-    const modal = document.getElementById('authModal');
-    const authTabs = document.querySelectorAll('.auth-tab');
-    const authForms = document.querySelectorAll('.auth-form');
-    const closeModal = document.querySelector('.close');
-    const accountLink = document.querySelector('.nav-link');
+    // Account dropdown functionality
+    const accountLinkToggle = document.getElementById('accountLinkToggle');
+    const accountDropdown = document.getElementById('accountDropdown');
 
-    // Open modal when account link is clicked
-    if (accountLink) {
-        accountLink.addEventListener('click', function (e) {
+    if (accountLinkToggle) {
+        accountLinkToggle.addEventListener('click', function (e) {
             e.preventDefault();
-            modal.style.display = 'block';
+            accountDropdown.classList.toggle('show');
         });
     }
 
-    // Close modal
-    if (closeModal) {
-        closeModal.addEventListener('click', function () {
-            modal.style.display = 'none';
-        });
-    }
-
-    // Close modal when clicking outside
+    // Close dropdown when clicking outside
     window.addEventListener('click', function (e) {
-        if (e.target === modal) {
-            modal.style.display = 'none';
+        if (accountDropdown && !accountLinkToggle.contains(e.target) && !accountDropdown.contains(e.target)) {
+            accountDropdown.classList.remove('show');
         }
-    });
-
-    // Auth tab switching
-    authTabs.forEach(tab => {
-        tab.addEventListener('click', function () {
-            const targetTab = this.getAttribute('data-tab');
-
-            // Remove active class from all tabs and forms
-            authTabs.forEach(t => t.classList.remove('active'));
-            authForms.forEach(f => f.classList.remove('active'));
-
-            // Add active class to clicked tab and corresponding form
-            this.classList.add('active');
-            document.getElementById(targetTab + 'Form').classList.add('active');
-        });
     });
 
     // Add to cart functionality
@@ -217,31 +191,31 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Add scroll animations
-    function animateOnScroll() {
-        const elements = document.querySelectorAll('.category-card, .product-card, .seller-card');
-
-        elements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const elementVisible = 150;
-
-            if (elementTop < window.innerHeight - elementVisible) {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
-            }
-        });
-    }
-
-    // Initialize scroll animations
-    const elements = document.querySelectorAll('.category-card, .product-card, .seller-card');
-    elements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'all 0.6s ease';
-    });
-
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll();
+    // Add scroll animations _____________________________________________ //
+    // function animateOnScroll() {
+    //     const elements = document.querySelectorAll('.category-card, .product-card, .seller-card');
+    //
+    //     elements.forEach(element => {
+    //         const elementTop = element.getBoundingClientRect().top;
+    //         const elementVisible = 150;
+    //
+    //         if (elementTop < window.innerHeight - elementVisible) {
+    //             element.style.opacity = '1';
+    //             element.style.transform = 'translateY(0)';
+    //         }
+    //     });
+    // }
+    //
+    // // Initialize scroll animations
+    // const elements = document.querySelectorAll('.category-card, .product-card, .seller-card');
+    // elements.forEach(element => {
+    //     element.style.opacity = '0';
+    //     element.style.transform = 'translateY(20px)';
+    //     element.style.transition = 'all 0.6s ease';
+    // });
+    //
+    // window.addEventListener('scroll', animateOnScroll);
+    // animateOnScroll(); _________________________________________________ //
 
     // Categories Carousel functionality
     const carousel = document.getElementById('categoriesCarousel');

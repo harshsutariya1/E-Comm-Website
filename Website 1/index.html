@@ -26,10 +26,16 @@
             </div>
 
             <div class="nav-links">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-user"></i>
-                    <span>Account</span>
-                </a>
+                <div class="nav-link-dropdown">
+                    <a href="#" class="nav-link" id="accountLinkToggle">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                    <div class="dropdown-menu" id="accountDropdown">
+                        <a href="login.html" class="dropdown-item">Login</a>
+                        <a href="register.html" class="dropdown-item">Register</a>
+                    </div>
+                </div>
                 <a href="#" class="nav-link">
                     <i class="fas fa-heart"></i>
                     <span>Wishlist</span>
@@ -200,7 +206,8 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://blobcdn.same.energy/a/aa/df/aadf17fbbcb0b27b77c266eeef9bce73e51c4127" alt="Product">
+                        <img src="https://blobcdn.same.energy/a/aa/df/aadf17fbbcb0b27b77c266eeef9bce73e51c4127"
+                            alt="Product">
                         <div class="product-overlay">
                             <button class="btn-icon"><i class="fas fa-heart"></i></button>
                             <button class="btn-icon"><i class="fas fa-eye"></i></button>
@@ -223,7 +230,8 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://blobcdn.same.energy/a/6a/b0/6ab02c96c2fbe6c248cbeba571fb96273e0e0a7a" alt="Product">
+                        <img src="https://blobcdn.same.energy/a/6a/b0/6ab02c96c2fbe6c248cbeba571fb96273e0e0a7a"
+                            alt="Product">
                         <div class="product-overlay">
                             <button class="btn-icon"><i class="fas fa-heart"></i></button>
                             <button class="btn-icon"><i class="fas fa-eye"></i></button>
@@ -246,7 +254,8 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://blobcdn.same.energy/b/ee/3d/ee3d982582428fc8af247e35291c30051d6acf05" alt="Product">
+                        <img src="https://blobcdn.same.energy/b/ee/3d/ee3d982582428fc8af247e35291c30051d6acf05"
+                            alt="Product">
                         <div class="product-overlay">
                             <button class="btn-icon"><i class="fas fa-heart"></i></button>
                             <button class="btn-icon"><i class="fas fa-eye"></i></button>
@@ -269,7 +278,8 @@
 
                 <div class="product-card product-card-desktop">
                     <div class="product-image">
-                        <img src="https://blobcdn.same.energy/a/9f/ec/9fec7195862d1e0ce4e502e7a52940e1463dd60b" alt="Product">
+                        <img src="https://blobcdn.same.energy/a/9f/ec/9fec7195862d1e0ce4e502e7a52940e1463dd60b"
+                            alt="Product">
                         <div class="product-overlay">
                             <button class="btn-icon"><i class="fas fa-heart"></i></button>
                             <button class="btn-icon"><i class="fas fa-eye"></i></button>
@@ -292,7 +302,8 @@
 
                 <div class="product-card product-card-desktop">
                     <div class="product-image">
-                        <img src="https://blobcdn.same.energy/b/8a/ad/8aad3251eaac9ebcf50038c4fcd70fd32290839a" alt="Product">
+                        <img src="https://blobcdn.same.energy/b/8a/ad/8aad3251eaac9ebcf50038c4fcd70fd32290839a"
+                            alt="Product">
                         <div class="product-overlay">
                             <button class="btn-icon"><i class="fas fa-heart"></i></button>
                             <button class="btn-icon"><i class="fas fa-eye"></i></button>
@@ -604,50 +615,6 @@
     </footer>
 
     <!-- Auth Modal -->
-    <div id="authModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="auth-container">
-                <div class="auth-tabs">
-                    <button class="auth-tab active" data-tab="login">Login</button>
-                    <button class="auth-tab" data-tab="register">Register</button>
-                </div>
-
-                <div id="loginForm" class="auth-form active">
-                    <h2>Welcome Back!</h2>
-                    <form>
-                        <div class="form-group">
-                            <input type="email" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="Password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                        <a href="#" class="forgot-password">Forgot Password?</a>
-                    </form>
-                </div>
-
-                <div id="registerForm" class="auth-form">
-                    <h2>Create Account</h2>
-                    <form>
-                        <div class="form-group">
-                            <input type="text" placeholder="Full Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="Password" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="Confirm Password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Create Account</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script src="js/script.js"></script>
 </body>
