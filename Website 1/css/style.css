@@ -683,6 +683,14 @@ body {
     font-weight: 600;
     line-height: 1.4;
     transition: color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.product-title {
+    flex-grow: 1;
 }
 
 .product-card:hover .product-info h3 {
@@ -702,24 +710,20 @@ body {
 .product-rating {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: 4px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.product-rating i {
+    color: #ffc107;
+    font-size: 0.9rem;
 }
 
 .stars {
-    display: flex;
-    gap: 2px;
-}
-
-.stars i {
-    color: #ffc107;
-    font-size: 1rem;
-}
-
-.product-rating span {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    font-weight: 500;
+    display: none;
 }
 
 /* Enhanced button styles for product cards */

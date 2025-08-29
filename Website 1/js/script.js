@@ -71,10 +71,13 @@ document.addEventListener('DOMContentLoaded', function () {
     addToCartBtns.forEach(btn => {
         btn.addEventListener('click', function () {
             const productCard = this.closest('.product-card');
+            const h3 = productCard.querySelector('h3').cloneNode(true);
+            h3.querySelector('.product-rating')?.remove();
+            const productTitle = h3.textContent.trim();
             const productImage = productCard.querySelector('img').src;
-            const productTitle = productCard.querySelector('h3').textContent;
             const productPrice = productCard.querySelector('.product-price').textContent;
-            const productRating = parseFloat(productCard.querySelector('.product-rating span').textContent.replace('(', '').replace(')', ''));
+            const ratingElement = productCard.querySelector('.product-rating span');
+            const productRating = ratingElement ? parseFloat(ratingElement.textContent) : 0;
 
             const product = {
                 id: generateProductId(productTitle),
@@ -128,12 +131,15 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.addEventListener('click', function (e) {
             e.stopPropagation(); // Prevent card click
             const icon = this.querySelector('i');
-            if (icon.classList.contains('fa-heart')) {
+            if (icon) {
                 const productCard = this.closest('.product-card');
+                const h3 = productCard.querySelector('h3').cloneNode(true);
+                h3.querySelector('.product-rating')?.remove();
+                const productTitle = h3.textContent.trim();
                 const productImage = productCard.querySelector('img').src;
-                const productTitle = productCard.querySelector('h3').textContent;
                 const productPrice = productCard.querySelector('.product-price').textContent;
-                const productRating = parseFloat(productCard.querySelector('.product-rating span').textContent.replace('(', '').replace(')', ''));
+                const ratingElement = productCard.querySelector('.product-rating span');
+                const productRating = ratingElement ? parseFloat(ratingElement.textContent) : 0;
 
                 const product = {
                     id: generateProductId(productTitle), // Add unique ID
@@ -185,17 +191,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
         wishlistBtns.forEach(btn => {
             const productCard = btn.closest('.product-card');
-            const productTitle = productCard.querySelector('h3').textContent;
-            const productId = generateProductId(productTitle);
-            const icon = btn.querySelector('i');
+            if (productCard) {
+                const h3 = productCard.querySelector('h3').cloneNode(true);
+                h3.querySelector('.product-rating')?.remove();
+                const productTitle = h3.textContent.trim();
+                const productId = generateProductId(productTitle);
+                const icon = btn.querySelector('i');
 
-            const isInWishlist = wishlist.some(item => item.id === productId);
-            if (isInWishlist) {
-                icon.classList.remove('far');
-                icon.classList.add('fas');
-            } else {
-                icon.classList.remove('fas');
-                icon.classList.add('far');
+                if (icon) {
+                    const isInWishlist = wishlist.some(item => item.id === productId);
+                    if (isInWishlist) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                    } else {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                    }
+                }
             }
         });
     }

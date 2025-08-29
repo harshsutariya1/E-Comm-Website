@@ -98,23 +98,29 @@
     margin-bottom: 10px;
     font-weight: 600;
     line-height: 1.4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 }
 
 .wishlist-item-rating {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-    gap: 8px;
+    gap: 4px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.wishlist-item-rating i {
+    color: #ffc107;
+    font-size: 0.9rem;
 }
 
 .stars {
-    display: flex;
-    gap: 2px;
-}
-
-.stars i {
-    color: #ffc107;
-    font-size: 0.9rem;
+    display: none;
 }
 
 .wishlist-item-price {

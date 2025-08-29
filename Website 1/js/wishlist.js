@@ -64,13 +64,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     </button>
                 </div>
                 <div class="wishlist-item-info">
-                    <h3>${item.title}</h3>
-                    <div class="wishlist-item-rating">
-                        <div class="stars">
-                            ${generateStars(item.rating)}
+                    <h3>
+                        <span class="product-title">${item.title}</span>
+                        <div class="wishlist-item-rating">
+                            <i class="fas fa-star"></i>
+                            <span>${item.rating}</span>
                         </div>
-                        <span>(${item.rating})</span>
-                    </div>
+                    </h3>
                     <p class="wishlist-item-price">${item.price}</p>
                     <p class="wishlist-item-date">Added ${formatDate(item.dateAdded)}</p>
                     <div class="wishlist-item-actions">

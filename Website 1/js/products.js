@@ -137,28 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const productsPerPage = 8;
     let filteredProducts = [...products];
 
-    // Generate star rating HTML
-    function generateStars(rating) {
-        let stars = '';
-        const fullStars = Math.floor(rating);
-        const hasHalfStar = rating % 1 !== 0;
-
-        for (let i = 0; i < fullStars; i++) {
-            stars += '<i class="fas fa-star"></i>';
-        }
-
-        if (hasHalfStar) {
-            stars += '<i class="fas fa-star-half-alt"></i>';
-        }
-
-        const emptyStars = 5 - Math.ceil(rating);
-        for (let i = 0; i < emptyStars; i++) {
-            stars += '<i class="far fa-star"></i>';
-        }
-
-        return stars;
-    }
-
     // Create product card HTML
     function createProductCard(product) {
         return `
@@ -167,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <img src="${product.image}" alt="${product.title}">
                     <div class="product-overlay">
                         <button class="btn-icon wishlist-btn" aria-label="Add to wishlist" data-product-id="${product.id}">
-                            <i class="fas fa-heart"></i>
+                            <i class="far fa-heart"></i>
                         </button>
                         <button class="btn-icon quick-view-btn" aria-label="Quick view">
                             <i class="fas fa-eye"></i>
@@ -176,14 +154,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
                 </div>
                 <div class="product-info">
-                    <h3>${product.title}</h3>
-                    <p class="product-price">${product.price}</p>
-                    <div class="product-rating">
-                        <div class="stars">
-                            ${generateStars(product.rating)}
+                    <h3>
+                        <span class="product-title">${product.title}</span>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <span>${product.rating}</span>
                         </div>
-                        <span>(${product.rating})</span>
-                    </div>
+                    </h3>
+                    <p class="product-price">${product.price}</p>
                     <p class="product-description">${product.description}</p>
                     <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
                 </div>
@@ -296,10 +274,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const btn = e.target.closest('.wishlist-btn');
             const productCard = btn.closest('.product-card');
             const productId = btn.getAttribute('data-product-id');
-            const productTitle = productCard.querySelector('h3').textContent;
+            const productTitle = productCard.querySelector('.product-title').textContent.trim();
             const productImage = productCard.querySelector('img').src;
             const productPrice = productCard.querySelector('.product-price').textContent;
-            const productRating = parseFloat(productCard.querySelector('.product-rating span').textContent.replace('(', '').replace(')', ''));
+            const ratingElement = productCard.querySelector('.product-rating span');
+            const productRating = ratingElement ? parseFloat(ratingElement.textContent) : 0;
 
             const product = {
                 id: productId,
@@ -341,7 +320,56 @@ document.addEventListener('DOMContentLoaded', function () {
             // Dispatch custom event for wishlist updates
             window.dispatchEvent(new CustomEvent('wishlistUpdated', { detail: wishlist }));
         }
+
+        // Add to cart functionality for products page
+        if (e.target.closest('.add-to-cart-btn')) {
+            e.stopPropagation();
+            const btn = e.target.closest('.add-to-cart-btn');
+            const productCard = btn.closest('.product-card');
+            const productImage = productCard.querySelector('img').src;
+            const productTitle = productCard.querySelector('.product-title').textContent.trim();
+            const productPrice = productCard.querySelector('.product-price').textContent;
+            const ratingElement = productCard.querySelector('.product-rating span');
+            const productRating = ratingElement ? parseFloat(ratingElement.textContent) : 0;
+
+            const product = {
+                id: generateProductId(productTitle),
+                image: productImage,
+                title: productTitle,
+                price: productPrice,
+                rating: productRating,
+                quantity: 1,
+                dateAdded: new Date().toISOString()
+            };
+
+            // Get current cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('bytebazaar_cart')) || [];
+
+            // Check if item already exists in cart
+            const existingItemIndex = cart.findIndex(item => item.id === product.id);
+
+            if (existingItemIndex !== -1) {
+                cart[existingItemIndex].quantity += 1;
+            } else {
+                cart.push(product);
+            }
+
+            localStorage.setItem('bytebazaar_cart', JSON.stringify(cart));
+            updateCartCount();
+            showNotification('Product added to cart!');
+        }
     });
+
+    // Update cart count function
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('bytebazaar_cart')) || [];
+        const totalCount = cart.reduce((acc, item) => acc + (item.quantity || 0), 0);
+        const cartCountElement = document.getElementById('cartCount');
+
+        if (cartCountElement) {
+            cartCountElement.textContent = totalCount > 0 ? totalCount : '';
+        }
+    }
 
     // Initialize page
     renderProducts();
