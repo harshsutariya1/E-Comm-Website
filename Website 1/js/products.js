@@ -1,128 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Product data
-    const products = [
-        {
-            id: 'premium-headphones',
-            title: 'Premium Headphones',
-            price: '$99.99',
-            rating: 4.2,
-            image: 'https://blobcdn.same.energy/a/35/c9/35c93bd71cf4e6e84dc0e8392b8ac13d620be867',
-            category: 'electronics',
-            badge: 'New',
-            description: 'High-quality wireless headphones with noise cancellation and premium sound quality.'
-        },
-        {
-            id: 'smart-watch',
-            title: 'Smart Watch',
-            price: '$199.99',
-            rating: 4.8,
-            image: 'https://blobcdn.same.energy/a/aa/df/aadf17fbbcb0b27b77c266eeef9bce73e51c4127',
-            category: 'electronics',
-            badge: 'Best Seller',
-            description: 'Advanced fitness tracking smartwatch with heart rate monitor and GPS.'
-        },
-        {
-            id: 'designer-backpack',
-            title: 'Designer Backpack',
-            price: '$79.99',
-            rating: 4.1,
-            image: 'https://blobcdn.same.energy/a/6a/b0/6ab02c96c2fbe6c248cbeba571fb96273e0e0a7a',
-            category: 'fashion',
-            badge: null,
-            description: 'Stylish and durable backpack for everyday use with multiple compartments.'
-        },
-        {
-            id: 'wireless-speaker',
-            title: 'Wireless Speaker',
-            price: '$149.99',
-            rating: 4.9,
-            image: 'https://blobcdn.same.energy/b/ee/3d/ee3d982582428fc8af247e35291c30051d6acf05',
-            category: 'electronics',
-            badge: 'Sale',
-            description: 'Portable Bluetooth speaker with excellent sound quality and waterproof design.'
-        },
-        {
-            id: 'gaming-keyboard',
-            title: 'Gaming Keyboard',
-            price: '$129.99',
-            rating: 4.7,
-            image: 'https://blobcdn.same.energy/a/9f/ec/9fec7195862d1e0ce4e502e7a52940e1463dd60b',
-            category: 'electronics',
-            badge: null,
-            description: 'Mechanical gaming keyboard with RGB lighting and customizable keys.'
-        },
-        {
-            id: 'fitness-tracker',
-            title: 'Fitness Tracker',
-            price: '$89.99',
-            rating: 4.3,
-            image: 'https://blobcdn.same.energy/b/8a/ad/8aad3251eaac9ebcf50038c4fcd70fd32290839a',
-            category: 'sports',
-            badge: null,
-            description: 'Advanced fitness tracker with sleep monitoring and step counting.'
-        },
-        {
-            id: 'coffee-maker',
-            title: 'Coffee Maker',
-            price: '$159.99',
-            rating: 4.5,
-            image: 'https://placehold.co/250x250/ff9771/ffffff?text=Coffee+Maker',
-            category: 'home',
-            badge: null,
-            description: 'Premium coffee maker with programmable features and thermal carafe.'
-        },
-        {
-            id: 'desk-lamp',
-            title: 'Desk Lamp',
-            price: '$49.99',
-            rating: 4.6,
-            image: 'https://placehold.co/250x250/ff9771/ffffff?text=Desk+Lamp',
-            category: 'home',
-            badge: null,
-            description: 'LED desk lamp with adjustable brightness and USB charging port.'
-        },
-        {
-            id: 'yoga-mat',
-            title: 'Yoga Mat',
-            price: '$29.99',
-            rating: 4.4,
-            image: 'https://placehold.co/250x250/ff9771/ffffff?text=Yoga+Mat',
-            category: 'sports',
-            badge: null,
-            description: 'Non-slip yoga mat for comfortable workouts and meditation.'
-        },
-        {
-            id: 'phone-case',
-            title: 'Phone Case',
-            price: '$19.99',
-            rating: 4.8,
-            image: 'https://placehold.co/250x250/ff9771/ffffff?text=Phone+Case',
-            category: 'electronics',
-            badge: null,
-            description: 'Protective phone case with card holder and shock absorption.'
-        },
-        {
-            id: 'running-shoes',
-            title: 'Running Shoes',
-            price: '$119.99',
-            rating: 4.7,
-            image: 'https://placehold.co/250x250/ff9771/ffffff?text=Running+Shoes',
-            category: 'sports',
-            badge: 'New',
-            description: 'High-performance running shoes with advanced cushioning technology.'
-        },
-        {
-            id: 'blender',
-            title: 'Professional Blender',
-            price: '$199.99',
-            rating: 4.6,
-            image: 'https://placehold.co/250x250/ff9771/ffffff?text=Blender',
-            category: 'home',
-            badge: 'Sale',
-            description: 'Professional blender with multiple speed settings and durable blades.'
-        }
-    ];
-
     // DOM elements
     const productsGrid = document.getElementById('productsGrid');
     const categoryFilter = document.getElementById('categoryFilter');
@@ -135,7 +11,58 @@ document.addEventListener('DOMContentLoaded', function () {
     // Pagination variables
     let currentPage = 1;
     const productsPerPage = 8;
-    let filteredProducts = [...products];
+    let allProducts = []; // Will be populated from database
+    let filteredProducts = [];
+
+    // Fetch products from database
+    async function fetchProducts() {
+        try {
+            console.log('Fetching products from database...');
+            const response = await fetch('get_products.php');
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log('Received data:', data);
+
+            if (data.success) {
+                allProducts = data.products;
+                filteredProducts = [...allProducts];
+                renderProducts();
+                console.log('Products loaded successfully:', allProducts.length);
+            } else {
+                console.error('Failed to fetch products:', data.message);
+                showNotification('Failed to load products: ' + data.message);
+            }
+        } catch (error) {
+            console.error('Error fetching products:', error);
+            showNotification('Error loading products: ' + error.message + '. Please check your connection and server setup.');
+        }
+    }
+
+    // Generate star rating HTML
+    function generateStars(rating) {
+        let stars = '';
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 !== 0;
+
+        for (let i = 0; i < fullStars; i++) {
+            stars += '<i class="fas fa-star"></i>';
+        }
+
+        if (hasHalfStar) {
+            stars += '<i class="fas fa-star-half-alt"></i>';
+        }
+
+        const emptyStars = 5 - Math.ceil(rating);
+        for (let i = 0; i < emptyStars; i++) {
+            stars += '<i class="far fa-star"></i>';
+        }
+
+        return stars;
+    }
 
     // Create product card HTML
     function createProductCard(product) {
@@ -192,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Filter products
     function filterProducts() {
         const category = categoryFilter.value;
-        filteredProducts = category ? products.filter(product => product.category === category) : [...products];
+        filteredProducts = category ? allProducts.filter(product => product.category === category) : [...allProducts];
         currentPage = 1;
         renderProducts();
     }
@@ -215,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 filteredProducts.sort((a, b) => a.title.localeCompare(b.title));
                 break;
             default:
-                filteredProducts = [...products];
+                filteredProducts = [...allProducts];
                 break;
         }
 
@@ -363,16 +290,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // Update cart count function
     function updateCartCount() {
         const cart = JSON.parse(localStorage.getItem('bytebazaar_cart')) || [];
-        const totalCount = cart.reduce((acc, item) => acc + (item.quantity || 0), 0);
-        const cartCountElement = document.getElementById('cartCount');
-
-        if (cartCountElement) {
-            cartCountElement.textContent = totalCount > 0 ? totalCount : '';
-        }
+        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        const cartCountElements = document.querySelectorAll('.cart-count');
+        cartCountElements.forEach(element => {
+            element.textContent = totalItems;
+        });
     }
 
-    // Initialize page
-    renderProducts();
+    // Initialize page by fetching products
+    fetchProducts();
 });
 
 // Utility function to show notifications (if not already defined)
