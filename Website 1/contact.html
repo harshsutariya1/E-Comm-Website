@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ByteBazaar</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.jpg">
+    <link rel="apple-touch-icon" href="assets/logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo-link">
+                <div class="nav-logo">
+                    <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                    <span>ByteBazaar</span>
+                </div>
+            </a>
+
+            <div class="nav-search">
+                <input type="text" placeholder="Search products, brands and more...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="nav-links">
+                <a href="categories.html" class="nav-link">
+                    <i class="fas fa-th"></i>
+                    <span>Categories</span>
+                </a>
+                <div class="nav-link-dropdown">
+                    <a href="#" class="nav-link" id="accountLinkToggle">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                    <div class="dropdown-menu" id="accountDropdown">
+                        <a href="login.html" class="dropdown-item">Login</a>
+                        <a href="register.html" class="dropdown-item">Register</a>
+                    </div>
+                </div>
+                <a href="wishlist.html" class="nav-link">
+                    <i class="fas fa-heart"></i>
+                    <span>Wishlist</span>
+                </a>
+                <a href="cart.html" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+
+            <div class="nav-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+
+        <!-- Categories Menu -->
+        <div class="categories-menu">
+            <div class="nav-container">
+                <ul class="categories-list">
+                    <!-- Categories will be dynamically loaded -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <div class="form-header">
+                        <h2>Send us a Message</h2>
+                        <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+                    </div>
+
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number (Optional)</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="order">Order Support</option>
+                                <option value="returns">Returns & Refunds</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="seller">Seller Support</option>
+                                <option value="business">Business Partnership</option>
+                                <option value="feedback">Feedback & Suggestions</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6"
+                                placeholder="Please describe how we can help you..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-header">
+                            <h3>Get in Touch</h3>
+                            <p>We're always happy to help our customers.</p>
+                        </div>
+
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="method-info">
+                                    <h4>Email Us</h4>
+                                    <p>support@bytebazaar.com</p>
+                                    <small>We'll respond within 24 hours</small>
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="method-info">
+                                    <h4>Call Us</h4>
+                                    <p>+1 (555) 123-4567</p>
+                                    <small>Mon-Fri, 9am-6pm EST</small>
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div class="method-info">
+                                    <h4>Live Chat</h4>
+                                    <p>Available 24/7</p>
+                                    <small>Click the chat bubble below</small>
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="method-info">
+                                    <h4>Visit Us</h4>
+                                    <p>123 E-Commerce Street<br>Digital City, DC 12345</p>
+                                    <small>Mon-Fri, 9am-5pm</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-contact">
+                            <h4>Follow Us</h4>
+                            <div class="social-links">
+                                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find quick answers to common questions</p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How can I track my order?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can track your order by logging into your account and visiting the "My Orders" section.
+                            You'll receive a tracking number via email once your order ships.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What is your return policy?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day return policy for most items. Items must be in original condition with tags
+                            attached. Please visit our Returns page for detailed information.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How do I become a seller?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To become a seller, click on "Become a Seller" in the footer and fill out the application
+                            form. Our team will review your application and get back to you within 3-5 business days.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you offer international shipping?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we ship to most countries worldwide. Shipping costs and delivery times vary by location.
+                            You can check shipping options during checkout.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                        <span>ByteBazaar</span>
+                    </div>
+                    <p>Your ultimate shopping destination with millions of products from trusted sellers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Fashion</a></li>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Home & Garden</a></li>
+                        <li><a href="#">Sports</a></li>
+                        <li><a href="#">Books</a></li>
+                        <li><a href="#">Beauty & Health</a></li>
+                        <li><a href="#">Automotive</a></li>
+                        <li><a href="#">Pet Supplies</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Seller</h3>
+                    <ul>
+                        <li><a href="#">Become a Seller</a></li>
+                        <li><a href="#">Seller Dashboard</a></li>
+                        <li><a href="#">Seller Support</a></li>
+                        <li><a href="#">Seller Policies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 ByteBazaar. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+
+</html>
