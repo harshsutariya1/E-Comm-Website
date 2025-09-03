@@ -24,6 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
+            // Check if response is JSON
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                throw new Error('Received non-JSON response. Check if PHP is enabled on the server.');
+            }
+
             const data = await response.json();
             console.log('Received data:', data);
 
@@ -38,7 +44,43 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         } catch (error) {
             console.error('Error fetching products:', error);
-            showNotification('Error loading products: ' + error.message + '. Please check your connection and server setup.');
+            showNotification('Error loading products: ' + error.message + '. Please check your server setup and database connection.');
+        }
+    }
+
+    // Load categories for filter dropdown
+    async function loadCategoryFilter() {
+        try {
+            const response = await fetch('get_categories.php');
+
+            if (response.ok) {
+                const data = await response.json();
+
+                if (data.success && data.categories.length > 0) {
+                    updateCategoryFilter(data.categories);
+                }
+            }
+        } catch (error) {
+            console.warn('Error loading categories for filter:', error);
+        }
+    }
+
+    // Update category filter dropdown
+    function updateCategoryFilter(categories) {
+        if (categoryFilter) {
+            // Keep the "All Categories" option and add dynamic categories
+            const currentValue = categoryFilter.value;
+
+            categoryFilter.innerHTML = '<option value="">All Categories</option>' +
+                categories.map(category => {
+                    const categoryValue = category.slug === 'home-garden' ? 'home' : category.slug;
+                    return `<option value="${categoryValue}">${category.name}</option>`;
+                }).join('');
+
+            // Restore previous selection if it still exists
+            if (currentValue) {
+                categoryFilter.value = currentValue;
+            }
         }
     }
 
@@ -297,8 +339,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Initialize page by fetching products
+    // Initialize page by fetching products and categories
     fetchProducts();
+    loadCategoryFilter();
 });
 
 // Utility function to show notifications (if not already defined)

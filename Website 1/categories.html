@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Featured Products - ByteBazaar</title>
+    <title>All Categories - ByteBazaar</title>
     <link rel="icon" type="image/x-icon" href="assets/logo.jpg">
     <link rel="apple-touch-icon" href="assets/logo.jpg">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/categories.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -29,7 +30,7 @@
             </div>
 
             <div class="nav-links">
-                <a href="categories.html" class="nav-link">
+                <a href="categories.html" class="nav-link active">
                     <i class="fas fa-th"></i>
                     <span>Categories</span>
                 </a>
@@ -58,74 +59,21 @@
                 <i class="fas fa-bars"></i>
             </div>
         </div>
-
-        <!-- Categories Menu -->
-        <div class="categories-menu">
-            <div class="nav-container">
-                <ul class="categories-list">
-                    <li><a href="products.html?category=fashion"><i class="fas fa-tshirt"></i> Fashion</a></li>
-                    <li><a href="products.html?category=electronics"><i class="fas fa-laptop"></i> Electronics</a></li>
-                    <li><a href="products.html?category=home"><i class="fas fa-home"></i> Home & Garden</a></li>
-                    <li><a href="products.html?category=sports"><i class="fas fa-dumbbell"></i> Sports</a></li>
-                    <li><a href="#"><i class="fas fa-book"></i> Books</a></li>
-                    <li><a href="#"><i class="fas fa-gamepad"></i> Toys</a></li>
-                    <li><a href="#"><i class="fas fa-car"></i> Automotive</a></li>
-                    <li><a href="#"><i class="fas fa-palette"></i> Art & Crafts</a></li>
-                </ul>
-            </div>
-        </div>
     </nav>
 
-    <!-- Featured Products Section -->
-    <section class="featured-products">
+    <!-- Categories Section -->
+    <section class="categories-page-section">
         <div class="container">
-            <div class="products-header">
-                <h1 class="page-title">Featured Products</h1>
-                <p class="page-subtitle">Discover our handpicked selection of premium products</p>
+            <div class="page-header">
+                <h1 class="page-title">Explore Our Categories</h1>
+                <p class="page-subtitle">Find what you're looking for from our wide range of products.</p>
             </div>
 
-            <div class="products-controls">
-                <div class="products-filter">
-                    <select id="categoryFilter">
-                        <option value="">All Categories</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="home">Home & Garden</option>
-                        <option value="sports">Sports & Fitness</option>
-                    </select>
-                </div>
-                <div class="products-sort">
-                    <select id="sortProducts">
-                        <option value="default">Sort by</option>
-                        <option value="price-low">Price: Low to High</option>
-                        <option value="price-high">Price: High to Low</option>
-                        <option value="rating">Rating</option>
-                        <option value="name">Name</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be dynamically loaded here -->
-            </div>
-
-            <div class="products-pagination">
-                <button class="btn btn-secondary" id="prevPage" disabled>Previous</button>
-                <span class="page-info">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
-                <button class="btn btn-secondary" id="nextPage">Next</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="container">
-            <div class="newsletter-content">
-                <h2>Stay Updated with ByteBazaar</h2>
-                <p>Get the latest deals and offers directly in your inbox</p>
-                <div class="newsletter-form">
-                    <input type="email" placeholder="Enter your email address">
-                    <button class="btn btn-primary">Subscribe</button>
+            <div class="category-grid" id="categoryGrid">
+                <!-- Categories will be dynamically loaded here -->
+                <div class="loading-message" id="loadingMessage">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading categories...</p>
                 </div>
             </div>
         </div>
@@ -148,57 +96,40 @@
                         <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Shipping Info</a></li>
-                        <li><a href="#">Returns</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-section">
                     <h3>Categories</h3>
                     <ul>
-                        <li><a href="#">Fashion</a></li>
-                        <li><a href="#">Electronics</a></li>
-                        <li><a href="#">Home & Garden</a></li>
-                        <li><a href="#">Sports</a></li>
-                        <li><a href="#">Books</a></li>
-                        <li><a href="#">Beauty & Health</a></li>
-                        <li><a href="#">Automotive</a></li>
-                        <li><a href="#">Pet Supplies</a></li>
+                        <li><a href="products.html?category=fashion">Fashion</a></li>
+                        <li><a href="products.html?category=electronics">Electronics</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-section">
                     <h3>Seller</h3>
                     <ul>
                         <li><a href="#">Become a Seller</a></li>
                         <li><a href="#">Seller Dashboard</a></li>
-                        <li><a href="#">Seller Support</a></li>
-                        <li><a href="#">Seller Policies</a></li>
                     </ul>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>&copy; 2024 ByteBazaar. All rights reserved.</p>
                 <div class="footer-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
-                    <a href="#">Cookie Policy</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script src="js/script.js"></script>
-    <script src="js/products.js"></script>
-    <script src="js/navigation.js"></script>
+    <script src="js/categories.js"></script>
 </body>
 
 </html>
