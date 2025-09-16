@@ -327,6 +327,28 @@ document.addEventListener('DOMContentLoaded', function () {
             updateCartCount();
             showNotification('Product added to cart!');
         }
+
+        // Quick view functionality - redirect to product details page
+        if (e.target.closest('.quick-view-btn')) {
+            e.stopPropagation();
+            const btn = e.target.closest('.quick-view-btn');
+            const productCard = btn.closest('.product-card');
+            const productId = btn.getAttribute('data-product-id') || productCard.querySelector('.wishlist-btn').getAttribute('data-product-id');
+
+            if (productId) {
+                window.location.href = `product-details.html?id=${productId}`;
+            }
+        }
+
+        // Product card click - redirect to product details page
+        if (e.target.closest('.product-card') && !e.target.closest('.btn-icon') && !e.target.closest('.add-to-cart-btn')) {
+            const productCard = e.target.closest('.product-card');
+            const productId = productCard.querySelector('.wishlist-btn').getAttribute('data-product-id');
+
+            if (productId) {
+                window.location.href = `product-details.html?id=${productId}`;
+            }
+        }
     });
 
     // Update cart count function

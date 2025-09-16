@@ -107,6 +107,25 @@
 
             <div class="products-grid" id="productsGrid">
                 <!-- Products will be dynamically loaded here -->
+                <div class="product-card">
+                    <a href="product-details.html?id=${product.id}" class="product-link">
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.title}">
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <h3>
+                            <span class="product-title">${product.title}</span>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <span>${product.rating}</span>
+                            </div>
+                        </h3>
+                        <p class="product-price">${product.price}</p>
+                        <p class="product-description">${product.description}</p>
+                        <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
             </div>
 
             <div class="products-pagination">
