@@ -29,7 +29,7 @@ try {
     }
     
     // Prepare SQL query to fetch the specific product
-    $sql = "SELECT id, product_sku, title, price, rating, image, category, badge, description, date_added FROM products WHERE product_sku = ?";
+    $sql = "SELECT p_id, p_title, p_price, p_description, p_image, p_category, p_badge, p_total_ratings, seller_id, p_total_sold, p_createdat, p_updatedat FROM products WHERE p_id = ?";
     
     // Prepare and execute the statement
     $stmt = $conn->prepare($sql);
@@ -45,14 +45,18 @@ try {
         $row = $result->fetch_assoc();
         
         $product = array(
-            'id' => $row['product_sku'],
-            'title' => $row['title'],
-            'price' => '$' . number_format($row['price'], 2),
-            'rating' => (float)$row['rating'],
-            'image' => $row['image'],
-            'category' => $row['category'],
-            'badge' => $row['badge'],
-            'description' => $row['description']
+            'id' => $row['p_id'],
+            'title' => $row['p_title'],
+            'price' => '$' . number_format($row['p_price'], 2),
+            'description' => $row['p_description'],
+            'image' => $row['p_image'],
+            'category' => $row['p_category'],
+            'badge' => $row['p_badge'],
+            'rating' => (float)$row['p_total_ratings'],
+            'seller_id' => $row['seller_id'],
+            'total_sold' => (int)$row['p_total_sold'],
+            'created_at' => $row['p_createdat'],
+            'updated_at' => $row['p_updatedat']
         );
         
         $response['success'] = true;

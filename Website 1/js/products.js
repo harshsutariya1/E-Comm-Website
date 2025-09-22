@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function renderProductsIndex() {
         if (productsGridIndex) {
-            const productsToShow = allProducts.slice(0, 8); // Show only first 8 products
+            const productsToShow = allProducts.slice(0, 6); // Show only first 8 products
             productsGridIndex.innerHTML = productsToShow.map(product => createProductCard(product)).join('');
             initializeWishlistState();
         }

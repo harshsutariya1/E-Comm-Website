@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const data = await response.json();
 
             if (data.success) {
+                console.log('Product data:', data.product);
                 displayProductDetails(data.product);
                 loadRelatedProducts(data.product.category);
             } else {
