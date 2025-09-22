@@ -15,10 +15,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 const user = data.user;
                 document.getElementById('userName').textContent = `${user.first_name} ${user.last_name}`;
                 document.getElementById('userEmail').textContent = user.email;
+                document.getElementById('memberSince').textContent = `Member since: ${new Date(user.created_at).toLocaleDateString()}`;
 
-                if (user.is_seller) {
-                    document.getElementById('sellerTab').style.display = 'block';
-                }
+                // Populate settings form
+                document.getElementById('firstName').value = user.first_name;
+                document.getElementById('lastName').value = user.last_name;
+                document.getElementById('email').value = user.email;
 
                 // Load additional data
                 loadWishlistCount();
@@ -80,16 +82,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Add logout functionality
-    const logoutBtn = document.createElement('button');
-    logoutBtn.className = 'profile-nav-item';
-    logoutBtn.textContent = 'Logout';
-    logoutBtn.style.background = '#e74c3c';
-    logoutBtn.style.color = 'white';
-    logoutBtn.addEventListener('click', function () {
+    // Handle logout
+    document.getElementById('logoutBtn').addEventListener('click', function () {
         window.location.href = 'logout.php';
     });
-    document.querySelector('.profile-nav').appendChild(logoutBtn);
 
     // Initialize profile page
     loadProfileData();
