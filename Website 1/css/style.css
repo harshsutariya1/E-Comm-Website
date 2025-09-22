@@ -604,7 +604,7 @@ body {
     position: relative;
     overflow: hidden;
     height: 250px;
-    background: #f8f9fa;
+    /* background: #f8f9fa; */
 }
 
 .product-image img {

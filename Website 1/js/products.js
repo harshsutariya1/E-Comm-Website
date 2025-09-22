@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
+                    
                     ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
                 </div>
                 <div class="product-info">

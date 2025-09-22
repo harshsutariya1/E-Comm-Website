@@ -86,9 +86,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <!-- <img src="https://placehold.co/600x400/ff9771/ffffff?text=Shopping+Experience" alt="Shopping"> -->
-                <!-- <img src="https://blobcdn.same.energy/a/0d/63/0d632081642dce684e2069c15e2f28059d87c7be" alt="Shopping"> -->
-                <img src="assets/bytebazaar store image.png" alt="Shopping">
+                <img src="assets/bytebazaar2.png" alt="Shopping">
             </div>
         </div>
     </section>
@@ -113,110 +111,11 @@
                 <h2 class="section-title">Popular Sellers</h2>
                 <button class="btn btn-secondary view-all-btn">View All Sellers</button>
             </div>
-            <div class="sellers-grid">
-                <div class="seller-card">
-                    <div class="seller-header">
-                        <div class="seller-logo">
-                            <img src="https://placehold.co/80x80/ff9771/ffffff?text=TechHub" alt="TechHub">
-                        </div>
-                        <div class="seller-info">
-                            <h3>TechHub Store</h3>
-                            <p class="seller-category">Electronics & Gadgets</p>
-                            <div class="seller-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>(4.9)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="seller-stats">
-                        <div class="stat">
-                            <span class="stat-number">2.5K</span>
-                            <span class="stat-label">Products</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">15K</span>
-                            <span class="stat-label">Sales</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">98%</span>
-                            <span class="stat-label">Positive</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-secondary">Visit Store</button>
-                </div>
-
-                <div class="seller-card">
-                    <div class="seller-header">
-                        <div class="seller-logo">
-                            <img src="https://placehold.co/80x80/ff9771/ffffff?text=Fashion" alt="Fashion">
-                        </div>
-                        <div class="seller-info">
-                            <h3>Fashion Forward</h3>
-                            <p class="seller-category">Clothing & Accessories</p>
-                            <div class="seller-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <span>(4.7)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="seller-stats">
-                        <div class="stat">
-                            <span class="stat-number">1.8K</span>
-                            <span class="stat-label">Products</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">12K</span>
-                            <span class="stat-label">Sales</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">96%</span>
-                            <span class="stat-label">Positive</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-secondary">Visit Store</button>
-                </div>
-
-                <div class="seller-card">
-                    <div class="seller-header">
-                        <div class="seller-logo">
-                            <img src="https://placehold.co/80x80/ff9771/ffffff?text=Home" alt="Home">
-                        </div>
-                        <div class="seller-info">
-                            <h3>Home Essentials</h3>
-                            <p class="seller-category">Home & Garden</p>
-                            <div class="seller-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>(4.8)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="seller-stats">
-                        <div class="stat">
-                            <span class="stat-number">3.2K</span>
-                            <span class="stat-label">Products</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">18K</span>
-                            <span class="stat-label">Sales</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">99%</span>
-                            <span class="stat-label">Positive</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-secondary">Visit Store</button>
+            <div class="sellers-grid" id="sellersGrid">
+                <!-- Sellers will be dynamically loaded here -->
+                <div class="loading-message" id="loadingSellersMessage">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading sellers...</p>
                 </div>
             </div>
         </div>
@@ -298,6 +197,7 @@
 
     <script src="js/script.js"></script>
     <script src="js/products.js"></script>
+    <script src="js/sellers.js"></script>
     <script src="js/navigationCategories.js"></script>
 </body>
 
