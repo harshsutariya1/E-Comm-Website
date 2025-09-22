@@ -85,32 +85,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Generate star rating HTML
-    function generateStars(rating) {
-        let stars = '';
-        const fullStars = Math.floor(rating);
-        const hasHalfStar = rating % 1 !== 0;
-
-        for (let i = 0; i < fullStars; i++) {
-            stars += '<i class="fas fa-star"></i>';
-        }
-
-        if (hasHalfStar) {
-            stars += '<i class="fas fa-star-half-alt"></i>';
-        }
-
-        const emptyStars = 5 - Math.ceil(rating);
-        for (let i = 0; i < emptyStars; i++) {
-            stars += '<i class="far fa-star"></i>';
-        }
-
-        return stars;
-    }
-
     // Create product card HTML
     function createProductCard(product) {
         return `
-            <div class="product-card">
+            <div class="product-card" data-product-id="${product.id}">
                 <div class="product-image">
                     <img src="${product.image}" alt="${product.title}">
                     <div class="product-overlay">
@@ -221,11 +199,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Generate unique product ID
-    function generateProductId(title) {
-        return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    }
-
     // Event listeners
     if (categoryFilter) categoryFilter.addEventListener('change', filterProducts);
     if (sortProducts) sortProducts.addEventListener('change', sortProductsFunction);
@@ -250,8 +223,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.target.closest('.wishlist-btn')) {
             e.stopPropagation();
             const btn = e.target.closest('.wishlist-btn');
-            const productCard = btn.closest('.product-card');
             const productId = btn.getAttribute('data-product-id');
+            const productCard = btn.closest('.product-card');
             const productTitle = productCard.querySelector('.product-title').textContent.trim();
             const productImage = productCard.querySelector('img').src;
             const productPrice = productCard.querySelector('.product-price').textContent;
@@ -304,6 +277,7 @@ document.addEventListener('DOMContentLoaded', function () {
             e.stopPropagation();
             const btn = e.target.closest('.add-to-cart-btn');
             const productCard = btn.closest('.product-card');
+            const productId = productCard.getAttribute('data-product-id');
             const productImage = productCard.querySelector('img').src;
             const productTitle = productCard.querySelector('.product-title').textContent.trim();
             const productPrice = productCard.querySelector('.product-price').textContent;
@@ -311,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const productRating = ratingElement ? parseFloat(ratingElement.textContent) : 0;
 
             const product = {
-                id: generateProductId(productTitle),
+                id: productId,
                 image: productImage,
                 title: productTitle,
                 price: productPrice,
@@ -324,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let cart = JSON.parse(localStorage.getItem('bytebazaar_cart')) || [];
 
             // Check if item already exists in cart
-            const existingItemIndex = cart.findIndex(item => item.id === product.id);
+            const existingItemIndex = cart.findIndex(item => item.id === productId);
 
             if (existingItemIndex !== -1) {
                 cart[existingItemIndex].quantity += 1;
@@ -342,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function () {
             e.stopPropagation();
             const btn = e.target.closest('.quick-view-btn');
             const productCard = btn.closest('.product-card');
-            const productId = btn.getAttribute('data-product-id') || productCard.querySelector('.wishlist-btn').getAttribute('data-product-id');
+            const productId = productCard.getAttribute('data-product-id');
 
             if (productId) {
                 window.location.href = `product-details.html?id=${productId}`;
@@ -352,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Product card click - redirect to product details page
         if (e.target.closest('.product-card') && !e.target.closest('.btn-icon') && !e.target.closest('.add-to-cart-btn')) {
             const productCard = e.target.closest('.product-card');
-            const productId = productCard.querySelector('.wishlist-btn').getAttribute('data-product-id');
+            const productId = productCard.getAttribute('data-product-id');
 
             if (productId) {
                 window.location.href = `product-details.html?id=${productId}`;

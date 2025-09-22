@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const itemTotal = parseFloat(item.price.replace('$', '')) * quantity;
 
         return `
-            <div class="cart-item" data-index="${index}">
+            <div class="cart-item" data-index="${index}" data-id="${item.id}">
                 <div class="cart-item-image">
                     <img src="${item.image}" alt="${item.title}">
                 </div>

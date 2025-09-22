@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
     addToCartBtns.forEach(btn => {
         btn.addEventListener('click', function () {
             const productCard = this.closest('.product-card');
+            const productId = productCard.getAttribute('data-product-id');
             const h3 = productCard.querySelector('h3').cloneNode(true);
             h3.querySelector('.product-rating')?.remove();
             const productTitle = h3.textContent.trim();
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const productRating = ratingElement ? parseFloat(ratingElement.textContent) : 0;
 
             const product = {
-                id: generateProductId(productTitle),
+                id: productId,
                 image: productImage,
                 title: productTitle,
                 price: productPrice,
@@ -139,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const icon = this.querySelector('i');
             if (icon) {
                 const productCard = this.closest('.product-card');
+                const productId = productCard.getAttribute('data-product-id');
                 const h3 = productCard.querySelector('h3').cloneNode(true);
                 h3.querySelector('.product-rating')?.remove();
                 const productTitle = h3.textContent.trim();
@@ -148,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const productRating = ratingElement ? parseFloat(ratingElement.textContent) : 0;
 
                 const product = {
-                    id: generateProductId(productTitle), // Add unique ID
+                    id: productId,
                     image: productImage,
                     title: productTitle,
                     price: productPrice,
@@ -198,10 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
         wishlistBtns.forEach(btn => {
             const productCard = btn.closest('.product-card');
             if (productCard) {
-                const h3 = productCard.querySelector('h3').cloneNode(true);
-                h3.querySelector('.product-rating')?.remove();
-                const productTitle = h3.textContent.trim();
-                const productId = generateProductId(productTitle);
+                const productId = productCard.getAttribute('data-product-id');
                 const icon = btn.querySelector('i');
 
                 if (icon) {
@@ -216,11 +215,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
-    }
-
-    // Generate unique product ID
-    function generateProductId(title) {
-        return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     }
 
     // Call initialization on DOM ready
