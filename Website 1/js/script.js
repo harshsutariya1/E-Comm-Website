@@ -45,20 +45,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Named function for dropdown toggle
+    function toggleDropdown(e) {
+        e.preventDefault();
+        const accountDropdown = document.getElementById('accountDropdown');
+        if (accountDropdown) {
+            accountDropdown.classList.toggle('show');
+        }
+    }
+
     // Account dropdown functionality
     const accountLinkToggle = document.getElementById('accountLinkToggle');
     const accountDropdown = document.getElementById('accountDropdown');
 
     if (accountLinkToggle) {
-        accountLinkToggle.addEventListener('click', function (e) {
-            e.preventDefault();
-            accountDropdown.classList.toggle('show');
-        });
+        accountLinkToggle.addEventListener('click', toggleDropdown);
     }
 
     // Close dropdown when clicking outside
     window.addEventListener('click', function (e) {
-        if (accountDropdown && !accountLinkToggle.contains(e.target) && !accountDropdown.contains(e.target)) {
+        if (accountDropdown && accountLinkToggle && !accountLinkToggle.contains(e.target) && !accountDropdown.contains(e.target)) {
             accountDropdown.classList.remove('show');
         }
     });
@@ -366,9 +372,50 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = 'cart.html';
         });
     });
-});
 
-// Utility function to show notifications
+    // Check login status and update navigation
+    async function checkLoginStatus() {
+        try {
+            const response = await fetch('check_login.php');
+            const data = await response.json();
+
+            const accountLinkToggle = document.getElementById('accountLinkToggle');
+            const accountDropdown = document.getElementById('accountDropdown');
+
+            if (data.logged_in) {
+                // User is logged in: remove dropdown and set link to profile
+                if (accountDropdown) {
+                    accountDropdown.remove();
+                }
+                if (accountLinkToggle) {
+                    accountLinkToggle.href = 'profile.html';
+                    accountLinkToggle.querySelector('span').textContent = 'Profile';
+                    // Remove the dropdown toggle event listener
+                    accountLinkToggle.removeEventListener('click', toggleDropdown);
+                }
+            } else {
+                // User not logged in: ensure dropdown exists and add event listener
+                if (!accountDropdown && accountLinkToggle) {
+                    const dropdown = document.createElement('div');
+                    dropdown.className = 'dropdown-menu';
+                    dropdown.id = 'accountDropdown';
+                    dropdown.innerHTML = `
+                        <a href="login.html" class="dropdown-item">Login</a>
+                        <a href="register.html" class="dropdown-item">Register</a>
+                    `;
+                    accountLinkToggle.parentNode.appendChild(dropdown);
+                    // Re-add the event listener
+                    accountLinkToggle.addEventListener('click', toggleDropdown);
+                }
+            }
+        } catch (error) {
+            console.warn('Error checking login status:', error);
+        }
+    }
+
+    // Call checkLoginStatus on page load
+    checkLoginStatus();
+});
 function showNotification(message) {
     const notification = document.createElement('div');
     notification.className = 'notification';

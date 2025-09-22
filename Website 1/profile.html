@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - ByteBazaar</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.jpg">
+    <link rel="apple-touch-icon" href="assets/logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo-link">
+                <div class="nav-logo">
+                    <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                    <span>ByteBazaar</span>
+                </div>
+            </a>
+
+            <div class="nav-search">
+                <input type="text" placeholder="Search products, brands and more...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="nav-links">
+                <a href="categories.html" class="nav-link">
+                    <i class="fas fa-th"></i>
+                    <span>Categories</span>
+                </a>
+                <div class="nav-link-dropdown">
+                    <a href="#" class="nav-link" id="accountLinkToggle">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                    <div class="dropdown-menu" id="accountDropdown">
+                        <a href="login.html" class="dropdown-item">Login</a>
+                        <a href="register.html" class="dropdown-item">Register</a>
+                    </div>
+                </div>
+                <a href="wishlist.html" class="nav-link">
+                    <i class="fas fa-heart"></i>
+                    <span>Wishlist</span>
+                </a>
+                <a href="cart.html" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+
+            <div class="nav-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+
+        <!-- Categories Menu -->
+        <div class="categories-menu">
+            <div class="nav-container">
+                <ul class="categories-list">
+                    <!-- Categories will be dynamically loaded here -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-header">
+                <h1 class="page-title">My Profile</h1>
+                <p class="page-subtitle">Manage your account information and preferences</p>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-sidebar">
+                    <div class="profile-avatar">
+                        <img src="https://placehold.co/150x150/ff6b35/ffffff?text=User" alt="Profile Picture"
+                            id="profileAvatar">
+                        <button class="change-avatar-btn">Change Picture</button>
+                    </div>
+                    <div class="profile-nav">
+                        <button class="profile-nav-item active" data-tab="overview">Overview</button>
+                        <button class="profile-nav-item" data-tab="orders">My Orders</button>
+                        <button class="profile-nav-item" data-tab="wishlist">Wishlist</button>
+                        <button class="profile-nav-item" data-tab="settings">Account Settings</button>
+                        <button class="profile-nav-item" data-tab="seller" id="sellerTab" style="display: none;">Seller
+                            Dashboard</button>
+                    </div>
+                </div>
+
+                <div class="profile-main">
+                    <div class="profile-tab active" id="overview">
+                        <h2>Account Overview</h2>
+                        <div class="overview-grid">
+                            <div class="overview-card">
+                                <i class="fas fa-user"></i>
+                                <div>
+                                    <h3>Personal Information</h3>
+                                    <p id="userName">Loading...</p>
+                                    <p id="userEmail">Loading...</p>
+                                </div>
+                            </div>
+                            <div class="overview-card">
+                                <i class="fas fa-shopping-bag"></i>
+                                <div>
+                                    <h3>Total Orders</h3>
+                                    <p id="totalOrders">0</p>
+                                </div>
+                            </div>
+                            <div class="overview-card">
+                                <i class="fas fa-heart"></i>
+                                <div>
+                                    <h3>Wishlist Items</h3>
+                                    <p id="wishlistCount">0</p>
+                                </div>
+                            </div>
+                            <div class="overview-card">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <h3>Account Status</h3>
+                                    <p id="accountStatus">Active</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-tab" id="orders">
+                        <h2>My Orders</h2>
+                        <div class="orders-list" id="ordersList">
+                            <p>No orders found.</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-tab" id="wishlist">
+                        <h2>My Wishlist</h2>
+                        <div class="wishlist-preview" id="wishlistPreview">
+                            <p>No items in wishlist.</p>
+                        </div>
+                        <a href="wishlist.html" class="btn btn-primary">View Full Wishlist</a>
+                    </div>
+
+                    <div class="profile-tab" id="settings">
+                        <h2>Account Settings</h2>
+                        <form class="settings-form" id="settingsForm">
+                            <div class="form-section">
+                                <h3>Personal Information</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" id="firstName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" id="lastName" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" required>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Change Password</h3>
+                                <div class="form-group">
+                                    <label for="currentPassword">Current Password</label>
+                                    <input type="password" id="currentPassword">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="newPassword">New Password</label>
+                                        <input type="password" id="newPassword">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirm New Password</label>
+                                        <input type="password" id="confirmPassword">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+
+                    <div class="profile-tab" id="seller">
+                        <h2>Seller Dashboard</h2>
+                        <div class="seller-stats">
+                            <div class="stat-card">
+                                <h3>Total Products</h3>
+                                <p id="totalProducts">0</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Total Sales</h3>
+                                <p id="totalSales">$0.00</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Rating</h3>
+                                <p id="sellerRating">0.0</p>
+                            </div>
+                        </div>
+                        <div class="seller-actions">
+                            <a href="#" class="btn btn-primary">Add New Product</a>
+                            <a href="#" class="btn btn-secondary">Manage Products</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                        <span>ByteBazaar</span>
+                    </div>
+                    <p>Your ultimate shopping destination with millions of products from trusted sellers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul class="footer-categories">
+                        <!-- Categories will be dynamically loaded here -->
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Seller</h3>
+                    <ul>
+                        <li><a href="#">Become a Seller</a></li>
+                        <li><a href="#">Seller Dashboard</a></li>
+                        <li><a href="#">Seller Support</a></li>
+                        <li><a href="#">Seller Policies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 ByteBazaar. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/navigationCategories.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+
+</html>
