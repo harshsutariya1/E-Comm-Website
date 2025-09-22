@@ -15,7 +15,7 @@ try {
     }
     
     // Prepare SQL query to fetch all categories
-    $sql = "SELECT id, name, slug, description, image_url, icon_class, product_count FROM categories ORDER BY name ASC";
+    $sql = "SELECT c_id, name, description, image, icon_class, products_count FROM categories ORDER BY name ASC";
     
     // Execute the query
     $result = $conn->query($sql);
@@ -25,13 +25,12 @@ try {
         $categories = array();
         while ($row = $result->fetch_assoc()) {
             $categories[] = array(
-                'id' => (int)$row['id'],
+                'c_id' => (int)$row['c_id'],
                 'name' => $row['name'],
-                'slug' => $row['slug'],
                 'description' => $row['description'],
-                'image_url' => $row['image_url'],
+                'image' => $row['image'],
                 'icon_class' => $row['icon_class'],
-                'product_count' => (int)$row['product_count']
+                'products_count' => (int)$row['products_count']
             );
         }
         

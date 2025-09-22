@@ -45,16 +45,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Create category card HTML
     function createCategoryCard(category) {
-        const categoryUrl = category.slug === 'home-garden' ? 'home' : category.slug;
         return `
-            <a href="products.html?category=${categoryUrl}" class="category-display-card">
+            <a href="products.html?category=${category.name}" class="category-display-card">
                 <div class="card-image">
-                    <img src="${category.image_url}" alt="${category.name}" onerror="this.src='https://placehold.co/400x300/ff6b35/ffffff?text=${encodeURIComponent(category.name)}'">
+                    <img src="${category.image}" alt="${category.name}" onerror="this.src='https://placehold.co/400x300/ff6b35/ffffff?text=${encodeURIComponent(category.name)}'">
                 </div>
                 <div class="card-content">
                     <h3><i class="${category.icon_class}"></i> ${category.name}</h3>
                     <p>${category.description || 'Discover our ' + category.name.toLowerCase() + ' collection.'}</p>
-                    ${category.product_count > 0 ? `<span class="product-count">${category.product_count} products</span>` : ''}
+                    ${category.products_count > 0 ? `<span class="product-count">${category.products_count} products</span>` : ''}
                 </div>
             </a>
         `;
