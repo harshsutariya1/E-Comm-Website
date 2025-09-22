@@ -162,18 +162,61 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    checkoutBtn.addEventListener('click', function () {
+    checkoutBtn.addEventListener('click', async function () {
         const cart = loadCart();
         if (cart.length === 0) {
             showNotification('Your cart is empty');
             return;
         }
 
-        // Simulate checkout process
-        showNotification('Redirecting to checkout...');
-        setTimeout(() => {
-            showNotification('Checkout functionality would be implemented here');
-        }, 1500);
+        // Check login status and user details
+        try {
+            const response = await fetch('check_login.php');
+            const data = await response.json();
+
+            if (!data.logged_in) {
+                showNotification('You must be logged in to checkout. Redirecting to login...');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+                return;
+            }
+
+            const user = data.user;
+            if (!user.address || !user.phone_number) {
+                showNotification('Please add your address and phone number in your profile before checking out.');
+                setTimeout(() => {
+                    window.location.href = 'profile.html#settings';
+                }, 2000);
+                return;
+            }
+
+            // Process order
+            const formData = new FormData();
+            formData.append('cart_items', JSON.stringify(cart));
+
+            const orderResponse = await fetch('process_order.php', {
+                method: 'POST',
+                body: formData
+            });
+            const orderData = await orderResponse.json();
+
+            if (orderData.success) {
+                // Clear cart
+                localStorage.removeItem('bytebazaar_cart');
+                updateCartCount();
+
+                // Redirect to confirmation page
+                const orderIds = orderData.order_ids.join(',');
+                window.location.href = `order-confirmation.html?order_ids=${orderIds}`;
+            } else {
+                showNotification(orderData.message);
+            }
+
+        } catch (error) {
+            console.error('Error during checkout:', error);
+            showNotification('An error occurred during checkout. Please try again.');
+        }
     });
 
     // Initialize cart on page load

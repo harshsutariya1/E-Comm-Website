@@ -7,6 +7,8 @@ CREATE TABLE `users` (
   `email` VARCHAR(100) NOT NULL UNIQUE,
   `password` VARCHAR(255) NOT NULL COMMENT 'Stores the hashed password',
   `is_seller` BOOLEAN NOT NULL DEFAULT FALSE,
+  `address` TEXT NULL,
+  `phone_number` VARCHAR(20) NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `seller_store_name` VARCHAR(100) NULL,

@@ -21,10 +21,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('firstName').value = user.first_name;
                 document.getElementById('lastName').value = user.last_name;
                 document.getElementById('email').value = user.email;
+                document.getElementById('phone_number').value = user.phone_number || '';
+                document.getElementById('address').value = user.address || '';
+
+                // Update seller button based on seller status
+                const sellerBtn = document.getElementById('sellerBtn');
+                if (user.is_seller) {
+                    sellerBtn.textContent = 'Seller Dashboard';
+                    sellerBtn.onclick = () => window.location.href = 'seller-dashboard.html';
+                } else {
+                    sellerBtn.textContent = 'Become a Seller';
+                    sellerBtn.onclick = () => window.location.href = 'become-seller.html'; // Assuming a page for becoming a seller
+                }
 
                 // Load additional data
                 loadWishlistCount();
                 loadOrderCount();
+                loadOrders();
             } else {
                 // Redirect to login if not logged in
                 window.location.href = 'login.html';
@@ -34,12 +47,67 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Load orders for the orders tab
+    async function loadOrders() {
+        try {
+            const response = await fetch('get_user_orders.php');
+            const data = await response.json();
+
+            if (data.success) {
+                displayOrders(data.orders);
+            } else {
+                document.getElementById('ordersList').innerHTML = '<p>No orders found.</p>';
+            }
+        } catch (error) {
+            console.error('Error loading orders:', error);
+            document.getElementById('ordersList').innerHTML = '<p>Error loading orders.</p>';
+        }
+    }
+
+    // Display orders in the orders tab
+    function displayOrders(orders) {
+        const ordersList = document.getElementById('ordersList');
+        if (orders.length === 0) {
+            ordersList.innerHTML = '<p>No orders found.</p>';
+            return;
+        }
+
+        const ordersHtml = orders.map(order => `
+            <div class="order-item">
+                <div class="order-header">
+                    <span class="order-id">Order #${order.o_id}</span>
+                    <span class="order-date">${new Date(order.o_createdat).toLocaleDateString()}</span>
+                    <span class="order-status">${order.is_delivered ? 'Delivered' : 'Processing'}</span>
+                </div>
+                <div class="order-details">
+                    <img src="${order.p_image}" alt="${order.p_title}" class="order-image">
+                    <div class="order-info">
+                        <h4>${order.p_title}</h4>
+                        <p>Price: $${order.p_price}</p>
+                        <p>Seller: ${order.seller_name}</p>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        ordersList.innerHTML = ordersHtml;
+    }
+
+    // Populate seller settings
+    function populateSellerSettings(user) {
+        document.getElementById('storeName').value = user.seller_store_name || '';
+        document.getElementById('storeCategory').value = user.seller_category || '';
+        document.getElementById('storeRating').value = user.seller_ratings || '0.00';
+        document.getElementById('totalProducts').value = user.seller_total_products || '0';
+        document.getElementById('totalSales').value = user.seller_total_sells || '0';
+    }
+
     // Load wishlist count
     function loadWishlistCount() {
         const wishlist = JSON.parse(localStorage.getItem('bytebazaar_wishlist')) || [];
         document.getElementById('wishlistCount').textContent = wishlist.length;
 
-        if (wishlist.length > 0) {
+        if (wishlistPreview && wishlist.length > 0) {
             wishlistPreview.innerHTML = wishlist.slice(0, 3).map(item => `
                 <div class="wishlist-item-preview">
                     <img src="${item.image}" alt="${item.title}">
@@ -75,10 +143,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Handle settings form submission
     if (settingsForm) {
-        settingsForm.addEventListener('submit', function (e) {
+        settingsForm.addEventListener('submit', async function (e) {
             e.preventDefault();
-            // Handle form submission (placeholder)
-            showNotification('Settings updated successfully!');
+
+            const formData = new FormData();
+            formData.append('first_name', document.getElementById('firstName').value);
+            formData.append('last_name', document.getElementById('lastName').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('phone_number', document.getElementById('phone_number').value);
+            formData.append('address', document.getElementById('address').value);
+
+            try {
+                const response = await fetch('update_profile.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+
+                showNotification(data.message);
+
+                if (data.success) {
+                    loadProfileData(); // Reload profile data to show changes
+                }
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                showNotification('An error occurred while updating your profile.');
+            }
         });
     }
 
