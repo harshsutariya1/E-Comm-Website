@@ -22,7 +22,7 @@ try {
     }
     
     // Prepare SQL query to fetch all products
-    $sql = "SELECT id, product_sku, title, price, rating, image, category, badge, description, date_added FROM products ORDER BY date_added DESC";
+    $sql = "SELECT p_id, p_title, p_price, p_description, p_image, p_category, p_badge, p_total_ratings, seller_id, p_total_sold, p_createdat, p_updatedat FROM products ORDER BY p_createdat DESC";
     
     // Execute the query
     $result = $conn->query($sql);
@@ -32,14 +32,18 @@ try {
         $products = array();
         while ($row = $result->fetch_assoc()) {
             $products[] = array(
-                'id' => $row['product_sku'], // Use product_sku as id for consistency
-                'title' => $row['title'],
-                'price' => '$' . number_format($row['price'], 2),
-                'rating' => (float)$row['rating'],
-                'image' => $row['image'],
-                'category' => $row['category'],
-                'badge' => $row['badge'],
-                'description' => $row['description']
+                'id' => $row['p_id'],
+                'title' => $row['p_title'],
+                'price' => '$' . number_format($row['p_price'], 2),
+                'description' => $row['p_description'],
+                'image' => $row['p_image'],
+                'category' => $row['p_category'],
+                'badge' => $row['p_badge'],
+                'rating' => (float)$row['p_total_ratings'],
+                'seller_id' => $row['seller_id'],
+                'total_sold' => (int)$row['p_total_sold'],
+                'created_at' => $row['p_createdat'],
+                'updated_at' => $row['p_updatedat']
             );
         }
         

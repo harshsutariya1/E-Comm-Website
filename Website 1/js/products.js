@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     // DOM elements
     const productsGrid = document.getElementById('productsGrid');
+    const productsGridIndex = document.getElementById('productsGridIndex');
     const categoryFilter = document.getElementById('categoryFilter');
     const sortProducts = document.getElementById('sortProducts');
     const prevPage = document.getElementById('prevPage');
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 allProducts = data.products;
                 filteredProducts = [...allProducts];
                 renderProducts();
+                renderProductsIndex();
                 console.log('Products loaded successfully:', allProducts.length);
             } else {
                 console.error('Failed to fetch products:', data.message);
@@ -73,8 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             categoryFilter.innerHTML = '<option value="">All Categories</option>' +
                 categories.map(category => {
-                    const categoryValue = category.slug === 'home-garden' ? 'home' : category.slug;
-                    return `<option value="${categoryValue}">${category.name}</option>`;
+                    return `<option value="${category.name}">${category.name}</option>`;
                 }).join('');
 
             // Restore previous selection if it still exists
@@ -131,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     </h3>
                     <p class="product-price">${product.price}</p>
-                    <p class="product-description">${product.description}</p>
                     <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
                 </div>
             </div>
@@ -144,18 +144,26 @@ document.addEventListener('DOMContentLoaded', function () {
         const endIndex = startIndex + productsPerPage;
         const productsToShow = filteredProducts.slice(startIndex, endIndex);
 
-        productsGrid.innerHTML = productsToShow.map(product => createProductCard(product)).join('');
+        if (productsGrid) productsGrid.innerHTML = productsToShow.map(product => createProductCard(product)).join('');
 
         // Update pagination
         const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-        currentPageSpan.textContent = currentPage;
-        totalPagesSpan.textContent = totalPages;
+        if (currentPageSpan) currentPageSpan.textContent = currentPage;
+        if (totalPagesSpan) totalPagesSpan.textContent = totalPages;
 
-        prevPage.disabled = currentPage === 1;
-        nextPage.disabled = currentPage === totalPages;
+        if (prevPage) prevPage.disabled = currentPage === 1;
+        if (nextPage) nextPage.disabled = currentPage === totalPages;
 
         // Re-initialize wishlist state for new products
         initializeWishlistState();
+    }
+
+    function renderProductsIndex() {
+        if (productsGridIndex) {
+            const productsToShow = allProducts.slice(0, 8); // Show only first 8 products
+            productsGridIndex.innerHTML = productsToShow.map(product => createProductCard(product)).join('');
+            initializeWishlistState();
+        }
     }
 
     // Filter products
@@ -218,17 +226,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Event listeners
-    categoryFilter.addEventListener('change', filterProducts);
-    sortProducts.addEventListener('change', sortProductsFunction);
+    if (categoryFilter) categoryFilter.addEventListener('change', filterProducts);
+    if (sortProducts) sortProducts.addEventListener('change', sortProductsFunction);
 
-    prevPage.addEventListener('click', () => {
+    if (prevPage) prevPage.addEventListener('click', () => {
         if (currentPage > 1) {
             currentPage--;
             renderProducts();
         }
     });
 
-    nextPage.addEventListener('click', () => {
+    if (nextPage) nextPage.addEventListener('click', () => {
         const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
         if (currentPage < totalPages) {
             currentPage++;
