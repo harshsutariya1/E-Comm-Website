@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByteBazaar - Your Ultimate Shopping Destination</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.jpg">
+    <link rel="apple-touch-icon" href="assets/logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                <span>ByteBazaar</span>
+            </div>
+
+            <div class="nav-search">
+                <input type="text" placeholder="Search products, brands and more...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="nav-links">
+                <a href="categories.html" class="nav-link">
+                    <i class="fas fa-th"></i>
+                    <span>Categories</span>
+                </a>
+                <div class="nav-link-dropdown">
+                    <a href="#" class="nav-link" id="accountLinkToggle">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                    <div class="dropdown-menu" id="accountDropdown">
+                        <a href="login.html" class="dropdown-item">Login</a>
+                        <a href="register.html" class="dropdown-item">Register</a>
+                    </div>
+                </div>
+                <a href="wishlist.html" class="nav-link">
+                    <i class="fas fa-heart"></i>
+                    <span>Wishlist</span>
+                </a>
+                <a href="cart.html" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+
+            <div class="nav-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+
+        <!-- Categories Menu -->
+        <div class="categories-menu">
+            <div class="nav-container">
+                <ul class="categories-list">
+                    <!-- Categories will be dynamically loaded here -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Welcome to <span class="brand-text">ByteBazaar</span></h1>
+                <p>Discover amazing products at unbeatable prices. Shop from thousands of sellers worldwide.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Start Shopping</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="assets/bytebazaar2.png" alt="Shopping">
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Products</h2>
+                <button class="btn btn-secondary view-all-products-btn">View All Products</button>
+            </div>
+            <div class="products-grid" id="productsGridIndex">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Sellers Section -->
+    <section class="popular-sellers">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Popular Sellers</h2>
+                <button class="btn btn-secondary view-all-btn">View All Sellers</button>
+            </div>
+            <div class="sellers-grid" id="sellersGrid">
+                <!-- Sellers will be dynamically loaded here -->
+                <div class="loading-message" id="loadingSellersMessage">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading sellers...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated with ByteBazaar</h2>
+                <p>Get the latest deals and offers directly in your inbox</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address">
+                    <button class="btn btn-primary">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                        <span>ByteBazaar</span>
+                    </div>
+                    <p>Your ultimate shopping destination with millions of products from trusted sellers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul class="footer-categories">
+                        <!-- Categories will be dynamically loaded here -->
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Seller</h3>
+                    <ul>
+                        <li><a href="#">Become a Seller</a></li>
+                        <li><a href="#">Seller Dashboard</a></li>
+                        <li><a href="#">Seller Support</a></li>
+                        <li><a href="#">Seller Policies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 ByteBazaar. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+
+    <script src="js/script.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/sellers.js"></script>
+    <script src="js/navigationCategories.js"></script>
+</body>
+
+</html>
