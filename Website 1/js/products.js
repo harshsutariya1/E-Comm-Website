@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return `
             <div class="product-card" data-product-id="${product.id}">
                 <div class="product-image">
-                    <img src="${product.image}" alt="${product.title}">
+                    <img src="${product.image || 'https://placehold.co/250x250/ff9771/ffffff?text=No+Image'}" alt="${product.title}" onerror="this.src='https://placehold.co/250x250/ff9771/ffffff?text=No+Image'">
                     <div class="product-overlay">
                         <button class="btn-icon wishlist-btn" aria-label="Add to wishlist" data-product-id="${product.id}">
                             <i class="far fa-heart"></i>
