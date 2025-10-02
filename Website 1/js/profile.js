@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('userName').textContent = `${user.first_name} ${user.last_name}`;
                 document.getElementById('userEmail').textContent = user.email;
                 document.getElementById('memberSince').textContent = `Member since: ${new Date(user.created_at).toLocaleDateString()}`;
+                document.getElementById('totalOrders').textContent = user.total_user_orders || 0;
 
                 // Populate settings form
                 document.getElementById('firstName').value = user.first_name;
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Load additional data
                 loadWishlistCount();
-                loadOrderCount();
+                // loadOrderCount(user.total_user_orders || 0);
                 loadOrders();
             } else {
                 // Redirect to login if not logged in
@@ -121,9 +122,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Load order count (placeholder)
-    function loadOrderCount() {
-        // This would typically fetch from server
-        document.getElementById('totalOrders').textContent = '0'; // Placeholder
+    function loadOrderCount(totalOrders) {
+        document.getElementById('totalOrders').textContent = totalOrders;
     }
 
     // Handle tab switching
