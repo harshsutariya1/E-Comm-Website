@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 
-require_once 'db/db_config.php';
+require_once '../db/db_config.php';
 
 $response = ['success' => false, 'message' => '', 'order_details' => [], 'user_info' => []];
 
@@ -63,11 +63,9 @@ try {
     $response['success'] = true;
     $response['order_details'] = $order_details;
     $response['user_info'] = $user_info;
-
 } catch (Exception $e) {
     $response['message'] = 'Error fetching order details: ' . $e->getMessage();
 }
 
 $conn->close();
 echo json_encode($response);
-?>

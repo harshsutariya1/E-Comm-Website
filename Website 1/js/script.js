@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Check login status and update navigation
     async function checkLoginStatus() {
         try {
-            const response = await fetch('check_login.php');
+            const response = await fetch('../api/check_login.php');
             const data = await response.json();
 
             const accountLinkToggle = document.getElementById('accountLinkToggle');

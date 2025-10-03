@@ -11,22 +11,22 @@ $response = array('success' => false, 'products' => array(), 'message' => '');
 
 try {
     // Include the database configuration
-    require_once 'db/db_config.php';
-    
+    require_once '../db/db_config.php';
+
     // Log the request for debugging
     error_log("get_products.php called at " . date('Y-m-d H:i:s'));
-    
+
     // Check if database connection is successful
     if ($conn->connect_error) {
         throw new Exception('Database connection failed: ' . $conn->connect_error);
     }
-    
+
     // Prepare SQL query to fetch all products
     $sql = "SELECT p_id, p_title, p_price, p_description, p_image, p_category, p_badge, p_total_ratings, seller_id, p_total_sold, p_createdat, p_updatedat FROM products ORDER BY p_createdat DESC";
-    
+
     // Execute the query
     $result = $conn->query($sql);
-    
+
     if ($result) {
         // Fetch all products
         $products = array();
@@ -46,7 +46,7 @@ try {
                 'updated_at' => $row['p_updatedat']
             );
         }
-        
+
         $response['success'] = true;
         $response['products'] = $products;
         $response['message'] = 'Products fetched successfully';
@@ -54,7 +54,7 @@ try {
     } else {
         throw new Exception('Failed to fetch products: ' . $conn->error);
     }
-    
+
     // Close the database connection
     $conn->close();
 } catch (Exception $e) {
@@ -64,4 +64,3 @@ try {
 
 // Always return JSON response
 echo json_encode($response);
-?>

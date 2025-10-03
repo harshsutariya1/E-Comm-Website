@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function loadOrderDetails(orderIds) {
         try {
-            const response = await fetch(`get_order_details.php?order_ids=${orderIds.join(',')}`);
+            const response = await fetch(`../api/get_order_details.php?order_ids=${orderIds.join(',')}`);
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);

@@ -11,39 +11,39 @@ $response = array('success' => false, 'product' => null, 'message' => '');
 
 try {
     // Include the database configuration
-    require_once 'db/db_config.php';
-    
+    require_once '../db/db_config.php';
+
     // Check if product ID is provided
     if (!isset($_GET['id']) || empty($_GET['id'])) {
         throw new Exception('Product ID is required');
     }
-    
+
     $productId = trim($_GET['id']);
-    
+
     // Log the request for debugging
     error_log("get_product.php called for product ID: " . $productId);
-    
+
     // Check if database connection is successful
     if ($conn->connect_error) {
         throw new Exception('Database connection failed: ' . $conn->connect_error);
     }
-    
+
     // Prepare SQL query to fetch the specific product
     $sql = "SELECT p_id, p_title, p_price, p_description, p_image, p_category, p_badge, p_total_ratings, seller_id, p_total_sold, p_createdat, p_updatedat FROM products WHERE p_id = ?";
-    
+
     // Prepare and execute the statement
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
         throw new Exception('Failed to prepare statement: ' . $conn->error);
     }
-    
+
     $stmt->bind_param("s", $productId);
     $stmt->execute();
     $result = $stmt->get_result();
-    
+
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        
+
         $product = array(
             'id' => $row['p_id'],
             'title' => $row['p_title'],
@@ -58,7 +58,7 @@ try {
             'created_at' => $row['p_createdat'],
             'updated_at' => $row['p_updatedat']
         );
-        
+
         $response['success'] = true;
         $response['product'] = $product;
         $response['message'] = 'Product fetched successfully';
@@ -66,7 +66,7 @@ try {
     } else {
         throw new Exception('Product not found');
     }
-    
+
     // Close the statement and connection
     $stmt->close();
     $conn->close();
@@ -77,4 +77,3 @@ try {
 
 // Always return JSON response
 echo json_encode($response);
-?>

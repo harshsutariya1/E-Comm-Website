@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Check login status and user details
         try {
-            const response = await fetch('check_login.php');
+            const response = await fetch('../api/check_login.php');
             const data = await response.json();
 
             if (!data.logged_in) {
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const formData = new FormData();
             formData.append('cart_items', JSON.stringify(cart));
 
-            const orderResponse = await fetch('process_order.php', {
+            const orderResponse = await fetch('../api/process_order.php', {
                 method: 'POST',
                 body: formData
             });

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load seller dashboard data
     async function loadDashboardData() {
         try {
-            const response = await fetch('check_login.php');
+            const response = await fetch('../api/check_login.php');
             const data = await response.json();
 
             if (data.logged_in && data.user.is_seller) {
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load seller products
     async function loadSellerProducts(sellerId) {
         try {
-            const response = await fetch(`get_seller_products.php?seller_id=${sellerId}`);
+            const response = await fetch(`../api/get_seller_products.php?seller_id=${sellerId}`);
             const data = await response.json();
 
             if (data.success) {
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load seller orders
     async function loadSellerOrders(sellerId) {
         try {
-            const response = await fetch(`get_seller_orders.php?seller_id=${sellerId}`);
+            const response = await fetch(`../api/get_seller_orders.php?seller_id=${sellerId}`);
             const data = await response.json();
 
             if (data.success) {

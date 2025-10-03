@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fetch sellers data and populate the section
     async function loadSellers() {
         try {
-            const response = await fetch('get_sellers.php');
+            const response = await fetch('../api/get_sellers.php');
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);

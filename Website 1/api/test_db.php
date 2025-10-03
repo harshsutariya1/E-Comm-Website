@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Include the database configuration
-require_once 'db/db_config.php';
+require_once '../db/db_config.php';
 
 echo "<h1>Database Connection Test</h1>";
 
@@ -39,4 +39,3 @@ if ($result && $result->num_rows > 0) {
 }
 
 $conn->close();
-?>

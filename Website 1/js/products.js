@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     async function fetchProducts() {
         try {
             console.log('Fetching products from database...');
-            const response = await fetch('get_products.php');
+            const response = await fetch('../api/get_products.php');
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load categories for filter dropdown
     async function loadCategoryFilter() {
         try {
-            const response = await fetch('get_categories.php');
+            const response = await fetch('../api/get_categories.php');
 
             if (response.ok) {
                 const data = await response.json();
