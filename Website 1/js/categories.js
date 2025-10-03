@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fetch categories from database
     async function fetchCategories() {
         try {
-            const response = await fetch('../api/get_categories.php');
+            const response = await fetch('get_categories.php');
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);

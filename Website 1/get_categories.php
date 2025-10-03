@@ -7,19 +7,19 @@ $response = array('success' => false, 'categories' => array(), 'message' => '');
 
 try {
     // Include the database configuration
-    require_once '../db/db_config.php';
-
+    require_once 'db/db_config.php';
+    
     // Check if database connection is successful
     if ($conn->connect_error) {
         throw new Exception('Database connection failed: ' . $conn->connect_error);
     }
-
+    
     // Prepare SQL query to fetch all categories
     $sql = "SELECT c_id, name, description, image, icon_class, products_count FROM categories ORDER BY name ASC";
-
+    
     // Execute the query
     $result = $conn->query($sql);
-
+    
     if ($result) {
         // Fetch all categories
         $categories = array();
@@ -33,7 +33,7 @@ try {
                 'products_count' => (int)$row['products_count']
             );
         }
-
+        
         $response['success'] = true;
         $response['categories'] = $categories;
         $response['message'] = 'Categories fetched successfully';
@@ -41,7 +41,7 @@ try {
     } else {
         throw new Exception('Failed to fetch categories: ' . $conn->error);
     }
-
+    
     // Close the database connection
     $conn->close();
 } catch (Exception $e) {
@@ -51,3 +51,4 @@ try {
 
 // Always return JSON response
 echo json_encode($response);
+?>

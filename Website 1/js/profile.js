@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load user profile data
     async function loadProfileData() {
         try {
-            const response = await fetch('../api/check_login.php');
+            const response = await fetch('check_login.php');
             const data = await response.json();
 
             if (data.logged_in) {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load orders for the orders tab
     async function loadOrders() {
         try {
-            const response = await fetch('../api/get_user_orders.php');
+            const response = await fetch('get_user_orders.php');
             const data = await response.json();
 
             if (data.success) {
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
             formData.append('address', document.getElementById('address').value);
 
             try {
-                const response = await fetch('../api/update_profile.php', {
+                const response = await fetch('update_profile.php', {
                     method: 'POST',
                     body: formData
                 });
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Handle logout
     document.getElementById('logoutBtn').addEventListener('click', function () {
-        window.location.href = '../api/logout.php';
+        window.location.href = 'logout.php';
     });
 
     // Initialize profile page

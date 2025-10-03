@@ -1,7 +1,7 @@
 // Function to load categories in navigation menu
 async function loadNavigationCategories() {
     try {
-        const response = await fetch('../api/get_categories.php');
+        const response = await fetch('get_categories.php');
 
         if (!response.ok) {
             console.warn('Failed to load categories for navigation');

@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 
-require_once '../db/db_config.php';
+require_once 'db/db_config.php';
 
 $response = ['success' => false, 'message' => 'An error occurred.', 'order_id' => null];
 
@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response['success'] = true;
         $response['message'] = 'Order placed successfully!';
         $response['order_ids'] = $order_ids;
+
     } catch (Exception $e) {
         $conn->rollback();
         $response['message'] = 'Failed to place order: ' . $e->getMessage();
@@ -84,3 +85,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $response['message'] = 'Invalid request method.';
     echo json_encode($response);
 }
+?>

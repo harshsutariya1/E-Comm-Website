@@ -3,7 +3,7 @@ session_start();
 header('Content-Type: application/json');
 
 // Include database config
-require_once '../db/db_config.php';
+require_once 'db/db_config.php';
 
 $response = ['success' => false, 'message' => ''];
 
@@ -49,3 +49,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $conn->close();
 echo json_encode($response);
+?>

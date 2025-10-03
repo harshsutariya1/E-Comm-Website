@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 formData.append('confirm_password', confirmPassword.value);
 
                 // Send AJAX request
-                fetch('../api/register.php', {
+                fetch('register.php', {
                     method: 'POST',
                     body: formData
                 })

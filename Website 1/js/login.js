@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 formData.append('password', loginPassword.value);
 
                 // Send AJAX request
-                fetch('../api/login.php', {
+                fetch('login.php', {
                     method: 'POST',
                     body: formData
                 })

@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load product details from database
     async function loadProductDetails(productId) {
         try {
-            const response = await fetch(`../api/get_product.php?id=${productId}`);
+            const response = await fetch(`get_product.php?id=${productId}`);
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load related products
     async function loadRelatedProducts(category) {
         try {
-            const response = await fetch(`../api/get_products.php?category=${category}&limit=4`);
+            const response = await fetch(`get_products.php?category=${category}&limit=4`);
 
             if (response.ok) {
                 const data = await response.json();

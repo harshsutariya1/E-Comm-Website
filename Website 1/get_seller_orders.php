@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 
-require_once '../db/db_config.php';
+require_once 'db/db_config.php';
 
 $response = ['success' => false, 'message' => '', 'orders' => []];
 
@@ -14,14 +14,36 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
+// Verify user is a seller
+$stmt = $conn->prepare("SELECT is_seller FROM users WHERE u_id = ? AND is_user_active = 1");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+    $response['message'] = 'User not found.';
+    echo json_encode($response);
+    $stmt->close();
+    exit;
+}
+
+$user = $result->fetch_assoc();
+if (!$user['is_seller']) {
+    $response['message'] = 'Access denied. Seller account required.';
+    echo json_encode($response);
+    $stmt->close();
+    exit;
+}
+$stmt->close();
+
 try {
-    // Get user's orders
+    // Get seller's orders
     $stmt = $conn->prepare("
-        SELECT o.o_id, o.o_createdat, o.p_price, o.is_delivered, p.p_title, p.p_image, u.first_name, u.last_name
+        SELECT o.o_id, o.o_createdat, o.p_price, o.is_delivered, p.p_title, u.first_name, u.last_name
         FROM orders o
         JOIN products p ON o.p_id = p.p_id
-        JOIN users u ON o.seller_id = u.u_id
-        WHERE o.buyer_id = ?
+        JOIN users u ON o.buyer_id = u.u_id
+        WHERE o.seller_id = ?
         ORDER BY o.o_createdat DESC
     ");
     $stmt->bind_param("i", $user_id);
@@ -36,17 +58,18 @@ try {
             'p_price' => $row['p_price'],
             'is_delivered' => (bool) $row['is_delivered'],
             'p_title' => $row['p_title'],
-            'p_image' => $row['p_image'],
-            'seller_name' => $row['first_name'] . ' ' . $row['last_name']
+            'buyer_name' => $row['first_name'] . ' ' . $row['last_name']
         ];
     }
     $stmt->close();
 
     $response['success'] = true;
     $response['orders'] = $orders;
+
 } catch (Exception $e) {
     $response['message'] = 'Error fetching orders: ' . $e->getMessage();
 }
 
 $conn->close();
 echo json_encode($response);
+?>

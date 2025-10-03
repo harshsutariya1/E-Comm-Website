@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 
-require_once '../db/db_config.php';
+require_once 'db/db_config.php';
 
 $response = ['success' => false, 'message' => '', 'products' => []];
 
@@ -63,9 +63,11 @@ try {
 
     $response['success'] = true;
     $response['products'] = $products;
+
 } catch (Exception $e) {
     $response['message'] = 'Error fetching products: ' . $e->getMessage();
 }
 
 $conn->close();
 echo json_encode($response);
+?>

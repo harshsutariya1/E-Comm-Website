@@ -3,7 +3,7 @@ session_start();
 header('Content-Type: application/json');
 
 // Include database config
-require_once '../db/db_config.php';
+require_once 'db/db_config.php';
 
 $response = ['logged_in' => false];
 
@@ -30,3 +30,4 @@ if (isset($_SESSION['user_id'])) {
 
 $conn->close();
 echo json_encode($response);
+?>
