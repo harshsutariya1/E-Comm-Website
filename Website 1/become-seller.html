@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Seller - ByteBazaar</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.jpg">
+    <link rel="apple-touch-icon" href="assets/logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/become-seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo-link">
+                <div class="nav-logo">
+                    <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                    <span>ByteBazaar</span>
+                </div>
+            </a>
+
+            <div class="nav-search">
+                <input type="text" placeholder="Search products, brands and more...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="nav-links">
+                <a href="categories.html" class="nav-link">
+                    <i class="fas fa-th"></i>
+                    <span>Categories</span>
+                </a>
+                <div class="nav-link-dropdown">
+                    <a href="#" class="nav-link" id="accountLinkToggle">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                    <div class="dropdown-menu" id="accountDropdown">
+                        <a href="login.html" class="dropdown-item">Login</a>
+                        <a href="register.html" class="dropdown-item">Register</a>
+                    </div>
+                </div>
+                <a href="wishlist.html" class="nav-link">
+                    <i class="fas fa-heart"></i>
+                    <span>Wishlist</span>
+                </a>
+                <a href="cart.html" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+
+            <div class="nav-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Become Seller Section -->
+    <section class="become-seller-section">
+        <div class="container">
+            <div class="seller-header">
+                <h1 class="page-title">Become a Seller on ByteBazaar</h1>
+                <p class="page-subtitle">Start your journey to reach millions of customers worldwide</p>
+            </div>
+
+            <div class="seller-benefits">
+                <div class="benefit-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Global Reach</h3>
+                    <p>Sell to customers worldwide and expand your business globally</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Grow Your Business</h3>
+                    <p>Access powerful tools and analytics to grow your sales</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Payments</h3>
+                    <p>Get paid securely and on time with our trusted payment system</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Dedicated seller support team available round the clock</p>
+                </div>
+            </div>
+
+            <div class="seller-form-container">
+                <h2>Seller Registration Form</h2>
+                <form id="becomeSellerForm" class="seller-form">
+                    <div class="form-section">
+                        <h3>Store Information</h3>
+                        <div class="form-group">
+                            <label for="storeName">Store Name *</label>
+                            <input type="text" id="storeName" name="storeName" required
+                                placeholder="Enter your store name">
+                        </div>
+                        <div class="form-group">
+                            <label for="storeCategory">Store Category *</label>
+                            <select id="storeCategory" name="storeCategory" required>
+                                <option value="">Select a category</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Fashion">Fashion</option>
+                                <option value="Home & Garden">Home & Garden</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Books">Books</option>
+                                <option value="Toys">Toys</option>
+                                <option value="Beauty">Beauty</option>
+                                <option value="Automotive">Automotive</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Contact Information</h3>
+                        <div class="form-group">
+                            <label for="contactPhone">Contact Phone *</label>
+                            <input type="tel" id="contactPhone" name="contactPhone" required placeholder="+1234567890">
+                        </div>
+                        <div class="form-group">
+                            <label for="businessAddress">Business Address *</label>
+                            <textarea id="businessAddress" name="businessAddress" rows="3" required
+                                placeholder="Complete business address"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Terms & Conditions</h3>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="termsAccept" name="termsAccept" required>
+                            <label for="termsAccept">I accept the <a href="#" class="link">Seller Terms and
+                                    Conditions</a> and <a href="#" class="link">Privacy Policy</a> *</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="dataAccuracy" name="dataAccuracy" required>
+                            <label for="dataAccuracy">I confirm that all the information provided is accurate and
+                                complete *</label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Become a Seller</button>
+                        <a href="profile.html" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="seller-faq">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>How do I start selling?</h4>
+                        <p>Simply fill out the registration form and start adding your products immediately.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Are there any fees?</h4>
+                        <p>No setup fees. We charge a small commission on each sale.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>When do I get paid?</h4>
+                        <p>Payments are processed within 7 days after delivery confirmation.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Can I sell internationally?</h4>
+                        <p>Yes, you can sell to customers worldwide through our platform.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                        <span>ByteBazaar</span>
+                    </div>
+                    <p>Your ultimate shopping destination with millions of products from trusted sellers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul class="footer-categories">
+                        <!-- Categories will be dynamically loaded here -->
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Seller</h3>
+                    <ul>
+                        <li><a href="become-seller.html">Become a Seller</a></li>
+                        <li><a href="#">Seller Dashboard</a></li>
+                        <li><a href="#">Seller Support</a></li>
+                        <li><a href="#">Seller Policies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 ByteBazaar. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/navigationCategories.js"></script>
+    <script src="js/become-seller.js"></script>
+</body>
+
+</html>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                    <span>ByteBazaar</span>
+                </div>
+                <p>Your ultimate shopping destination with millions of products from trusted sellers worldwide.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul class="footer-categories">
+                    <!-- Categories will be dynamically loaded here -->
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Seller</h3>
+                <ul>
+                    <li><a href="become-seller.html">Become a Seller</a></li>
+                    <li><a href="#">Seller Dashboard</a></li>
+                    <li><a href="#">Seller Support</a></li>
+                    <li><a href="#">Seller Policies</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 ByteBazaar. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script src="js/navigationCategories.js"></script>
+<script src="js/become-seller.js"></script>
+</body>
+
+</html>

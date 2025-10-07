@@ -11,7 +11,7 @@ if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 
     // Fetch full user data from database
-    $stmt = $conn->prepare("SELECT u_id, first_name, last_name, email, is_seller, address, phone_number, created_at, total_user_orders FROM users WHERE u_id = ? AND is_user_active = 1");
+    $stmt = $conn->prepare("SELECT u_id, first_name, last_name, email, is_seller, address, phone_number, created_at, total_user_orders, seller_store_name, seller_profile_pic, seller_category FROM users WHERE u_id = ? AND is_user_active = 1");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -30,4 +30,3 @@ if (isset($_SESSION['user_id'])) {
 
 $conn->close();
 echo json_encode($response);
-?>

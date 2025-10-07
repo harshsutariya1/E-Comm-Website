@@ -18,6 +18,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('memberSince').textContent = `Member since: ${new Date(user.created_at).toLocaleDateString()}`;
                 document.getElementById('totalOrders').textContent = user.total_user_orders || 0;
 
+                // Update profile avatar - use seller_profile_pic if seller, otherwise use placeholder
+                const avatarElement = document.getElementById('profileAvatar');
+                if (user.is_seller && user.seller_profile_pic) {
+                    avatarElement.src = user.seller_profile_pic;
+                } else {
+                    const firstLetter = user.first_name.charAt(0).toUpperCase();
+                    avatarElement.src = `https://placehold.co/150x150/ff6b35/ffffff?text=${firstLetter}&font=roboto`;
+                }
+
                 // Populate settings form
                 document.getElementById('firstName').value = user.first_name;
                 document.getElementById('lastName').value = user.last_name;
@@ -32,12 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     sellerBtn.onclick = () => window.location.href = 'seller-dashboard.html';
                 } else {
                     sellerBtn.textContent = 'Become a Seller';
-                    sellerBtn.onclick = () => window.location.href = 'become-seller.html'; // Assuming a page for becoming a seller
+                    sellerBtn.onclick = () => window.location.href = 'become-seller.html';
                 }
 
                 // Load additional data
                 loadWishlistCount();
-                // loadOrderCount(user.total_user_orders || 0);
                 loadOrders();
             } else {
                 // Redirect to login if not logged in
@@ -69,7 +77,13 @@ document.addEventListener('DOMContentLoaded', function () {
     function displayOrders(orders) {
         const ordersList = document.getElementById('ordersList');
         if (orders.length === 0) {
-            ordersList.innerHTML = '<p>No orders found.</p>';
+            ordersList.innerHTML = `
+                <div class="no-orders">
+                    <i class="fas fa-box-open"></i>
+                    <p>No orders found.</p>
+                    <a href="index.html" class="btn btn-primary">Start Shopping</a>
+                </div>
+            `;
             return;
         }
 
@@ -77,15 +91,21 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="order-item">
                 <div class="order-header">
                     <span class="order-id">Order #${order.o_id}</span>
-                    <span class="order-date">${new Date(order.o_createdat).toLocaleDateString()}</span>
-                    <span class="order-status">${order.is_delivered ? 'Delivered' : 'Processing'}</span>
+                    <span class="order-date">${new Date(order.o_createdat).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        })}</span>
+                    <span class="order-status ${order.is_delivered ? 'delivered' : 'processing'}">
+                        ${order.is_delivered ? '✓ Delivered' : '⏳ Processing'}
+                    </span>
                 </div>
                 <div class="order-details">
                     <img src="${order.p_image}" alt="${order.p_title}" class="order-image">
                     <div class="order-info">
                         <h4>${order.p_title}</h4>
-                        <p>Price: $${order.p_price}</p>
-                        <p>Seller: ${order.seller_name}</p>
+                        <p>$${parseFloat(order.p_price).toFixed(2)}</p>
+                        <p>Sold by: ${order.seller_name}</p>
                     </div>
                 </div>
             </div>

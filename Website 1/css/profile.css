@@ -286,10 +286,17 @@
 }
 
 .order-item {
-    background: #f8f9fa;
+    background: white;
     padding: 20px;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.order-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .order-header {
@@ -297,53 +304,96 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
-    font-size: 0.9rem;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f0f0f0;
 }
 
 .order-id {
     font-weight: 600;
-    color: var(--primary-color);
+    color: #ff6b35;
+    font-size: 1rem;
+}
+
+.order-date {
+    color: #666;
+    font-size: 0.9rem;
 }
 
 .order-status {
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .order-status.delivered {
-    background: #d4edda;
-    color: #155724;
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    color: #28a745;
+    border: 1px solid #28a745;
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
 }
 
 .order-status.processing {
-    background: #fff3cd;
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
     color: #856404;
+    border: 1px solid #ffc107;
+    box-shadow: 0 2px 4px rgba(255, 193, 7, 0.2);
 }
 
 .order-details {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 .order-image {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     object-fit: cover;
-    border-radius: var(--border-radius);
+    border-radius: 10px;
+    border: 2px solid #f0f0f0;
+}
+
+.order-info {
+    flex: 1;
 }
 
 .order-info h4 {
-    margin-bottom: 5px;
-    color: var(--text-color);
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .order-info p {
-    margin: 2px 0;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+    margin: 4px 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.order-info p:first-of-type {
+    color: #ff6b35;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.no-orders {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.no-orders i {
+    font-size: 4rem;
+    color: #ff6b35;
+    margin-bottom: 20px;
+}
+
+.no-orders p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
 }
 
 /* Seller Settings */
