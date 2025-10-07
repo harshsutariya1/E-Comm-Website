@@ -172,6 +172,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // Check login status and user details
         try {
             const response = await fetch('check_login.php');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const data = await response.json();
 
             if (!data.logged_in) {
@@ -199,6 +202,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 method: 'POST',
                 body: formData
             });
+            if (!orderResponse.ok) {
+                throw new Error(`HTTP error! status: ${orderResponse.status}`);
+            }
             const orderData = await orderResponse.json();
 
             if (orderData.success) {

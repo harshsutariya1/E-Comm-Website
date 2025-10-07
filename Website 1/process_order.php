@@ -1,10 +1,13 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 header('Content-Type: application/json');
 
 require_once 'db/db_config.php';
 
-$response = ['success' => false, 'message' => 'An error occurred.', 'order_id' => null];
+$response = ['success' => false, 'message' => 'An error occurred.', 'order_ids' => []];
 
 if (!isset($_SESSION['user_id'])) {
     $response['message'] = 'You must be logged in to place an order.';
@@ -64,7 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Update user total orders by the number of items (each product counts as one order)
         $stmt = $conn->prepare("UPDATE users SET total_user_orders = total_user_orders + ? WHERE u_id = ?");
-        $stmt->bind_param("ii", count($cart_items), $user_id);
+        $item_count = count($cart_items);
+        $stmt->bind_param("ii", $item_count, $user_id);
         $stmt->execute();
         $stmt->close();
 

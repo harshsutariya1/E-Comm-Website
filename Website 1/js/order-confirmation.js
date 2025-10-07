@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('orderId').textContent = orderDetails[0].o_id;
         document.getElementById('orderDate').textContent = new Date(orderDetails[0].o_createdat).toLocaleDateString();
         document.getElementById('totalItems').textContent = orderDetails.length;
-        const totalAmount = orderDetails.reduce((sum, item) => sum + (parseFloat(item.p_price) * 1), 0); // Assuming quantity 1 for now
+        const totalAmount = orderDetails.reduce((sum, item) => sum + parseFloat(item.p_price), 0);
         document.getElementById('totalAmount').textContent = `$${totalAmount.toFixed(2)}`;
 
         // Order items
