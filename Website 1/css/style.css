@@ -604,7 +604,6 @@ body {
     position: relative;
     overflow: hidden;
     height: 250px;
-    /* background: #f8f9fa; */
 }
 
 .product-image img {
@@ -1340,17 +1339,17 @@ body {
 }
 
 /* Loading state for images */
-.product-image img {
+/* .product-image img {
     opacity: 0;
     transition: opacity 0.3s ease;
-}
+} */
 
-.product-image img.loaded {
+/* .product-image img.loaded {
     opacity: 1;
-}
+} */
 
 /* Fallback for missing images */
-.product-image img[src=""] {
+/* .product-image img[src=""] {
     background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
     display: flex;
     align-items: center;
@@ -1361,4 +1360,4 @@ body {
 
 .product-image img[src=""]::before {
     content: "Image not available";
-}
+} */
