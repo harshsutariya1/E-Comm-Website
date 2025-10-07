@@ -62,9 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->close();
         }
 
-        // Update user total orders
-        $stmt = $conn->prepare("UPDATE users SET total_user_orders = total_user_orders + 1 WHERE u_id = ?");
-        $stmt->bind_param("i", $user_id);
+        // Update user total orders by the number of items (each product counts as one order)
+        $stmt = $conn->prepare("UPDATE users SET total_user_orders = total_user_orders + ? WHERE u_id = ?");
+        $stmt->bind_param("ii", count($cart_items), $user_id);
         $stmt->execute();
         $stmt->close();
 
@@ -73,7 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response['success'] = true;
         $response['message'] = 'Order placed successfully!';
         $response['order_ids'] = $order_ids;
-
     } catch (Exception $e) {
         $conn->rollback();
         $response['message'] = 'Failed to place order: ' . $e->getMessage();
@@ -85,4 +84,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $response['message'] = 'Invalid request method.';
     echo json_encode($response);
 }
-?>
