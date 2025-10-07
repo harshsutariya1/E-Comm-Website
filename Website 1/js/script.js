@@ -233,17 +233,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Image loading handler
-    const productImages = document.querySelectorAll('.product-image img');
-    productImages.forEach(img => {
-        img.addEventListener('load', function () {
-            this.classList.add('loaded');
-        });
+    // const productImages = document.querySelectorAll('.product-image img');
+    // productImages.forEach(img => {
+    //     img.addEventListener('load', function () {
+    //         this.classList.add('loaded');
+    //     });
 
-        img.addEventListener('error', function () {
-            this.src = 'https://placehold.co/250x250/e0e0e0/999?text=Image+Not+Available';
-            this.classList.add('loaded');
-        });
-    });
+    //     img.addEventListener('error', function () {
+    //         this.src = 'https://placehold.co/250x250/e0e0e0/999?text=Image+Not+Available';
+    //         this.classList.add('loaded');
+    //     });
+    // });
 
     // Newsletter subscription
     const newsletterForm = document.querySelector('.newsletter-form');

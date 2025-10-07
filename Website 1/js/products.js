@@ -117,6 +117,24 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
     }
 
+    // New function to handle image loading
+    function initializeImageLoading() {
+        const productImages = document.querySelectorAll('.product-image img');
+        productImages.forEach(img => {
+            if (img.complete) {
+                img.classList.add('loaded');
+            } else {
+                img.addEventListener('load', function () {
+                    this.classList.add('loaded');
+                });
+                img.addEventListener('error', function () {
+                    this.src = 'https://placehold.co/250x250/e0e0e0/999?text=Image+Not+Available';
+                    this.classList.add('loaded');
+                });
+            }
+        });
+    }
+
     // Render products
     function renderProducts() {
         const startIndex = (currentPage - 1) * productsPerPage;
@@ -134,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (nextPage) nextPage.disabled = currentPage === totalPages;
 
         // Re-initialize wishlist state for new products
+        initializeImageLoading();
         initializeWishlistState();
     }
 
@@ -141,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (productsGridIndex) {
             const productsToShow = allProducts.slice(0, 6); // Show only first 8 products
             productsGridIndex.innerHTML = productsToShow.map(product => createProductCard(product)).join('');
+            initializeImageLoading();
             initializeWishlistState();
         }
     }

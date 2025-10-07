@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ByteBazaar</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo.jpg" alt="ByteBazaar Logo">
+                <h2>ByteBazaar Admin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-section="users">
+                    <i class="fas fa-users"></i>
+                    <span>Manage Users</span>
+                </a>
+                <a href="#" class="nav-item" data-section="products">
+                    <i class="fas fa-box"></i>
+                    <span>Manage Products</span>
+                </a>
+                <a href="#" class="nav-item" data-section="orders">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Manage Orders</span>
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1 id="pageTitle">Dashboard</h1>
+                <div class="admin-user">
+                    <i class="fas fa-user-shield"></i>
+                    <span id="adminName">Admin</span>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="admin-section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h3 id="totalUsers">0</h3>
+                                <p>Total Users</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-user-tie"></i>
+                            <div>
+                                <h3 id="totalSellers">0</h3>
+                                <p>Total Sellers</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-box"></i>
+                            <div>
+                                <h3 id="totalProducts">0</h3>
+                                <p>Total Products</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-shopping-cart"></i>
+                            <div>
+                                <h3 id="totalOrders">0</h3>
+                                <p>Total Orders</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Users Management Section -->
+                <section id="users" class="admin-section">
+                    <div class="section-header">
+                        <h2>User Management</h2>
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="userSearch" placeholder="Search users...">
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Orders</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <tr>
+                                    <td colspan="7" class="loading-cell">Loading users...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Products Management Section -->
+                <section id="products" class="admin-section">
+                    <div class="section-header">
+                        <h2>Product Management</h2>
+                        <div style="display: flex; gap: 15px; align-items: center;">
+                            <button class="btn btn-primary" onclick="openAddProductModal()">
+                                <i class="fas fa-plus"></i> Add Product
+                            </button>
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="productSearch" placeholder="Search products...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Price</th>
+                                    <th>Seller</th>
+                                    <th>Category</th>
+                                    <th>Sold</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTableBody">
+                                <tr>
+                                    <td colspan="8" class="loading-cell">Loading products...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Orders Management Section -->
+                <section id="orders" class="admin-section">
+                    <h2>Order Management</h2>
+                    <p>Order management features coming soon...</p>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div id="editProductModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Product</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="editProductForm">
+                <input type="hidden" id="editProductId">
+                <div class="form-group">
+                    <label>Product Title</label>
+                    <input type="text" id="editProductTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Price ($)</label>
+                    <input type="number" id="editProductPrice" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" id="editProductCategory" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="editProductDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="text" id="editProductImage">
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-secondary close-modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Product</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="addProductForm">
+                <div class="form-group">
+                    <label>Select Seller</label>
+                    <select id="addProductSeller" required>
+                        <option value="">Select a seller...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Product Title</label>
+                    <input type="text" id="addProductTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Price ($)</label>
+                    <input type="number" id="addProductPrice" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" id="addProductCategory" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="addProductDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="text" id="addProductImage">
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                    <button type="button" class="btn btn-secondary close-modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/admin-dashboard.js"></script>
+</body>
+
+</html>
